@@ -1,0 +1,26 @@
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Java
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# OSX noise
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
