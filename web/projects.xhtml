@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./ProjetaAlternativeTemplate.xhtml">
+
+<!--            <ui:define name="top">
+                top
+            </ui:define>-->
+
+            <ui:define name="left">
+                menu
+            </ui:define>
+
+
+            <ui:define name="content">
+                
+                <h:form id="form"> 
+                    <p:growl id="messages" showDetail="true" />  
+
+                    <p:treeTable value="#{documentController.root}" var="document"  
+                                 selection="#{documentController.selectedNode}" selectionMode="single">  
+
+                        <f:facet name="header">  
+                            Projets 
+                        </f:facet>  
+
+                        <p:column style="width:150px">  
+                            <f:facet name="header">  
+                                Nom  
+                            </f:facet>  
+                            <h:outputText value="#{document.name}" />  
+                        </p:column>  
+
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                Size  
+                            </f:facet>  
+                            <h:outputText value="#{document.size}" />  
+                        </p:column>  
+
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                Type  
+                            </f:facet>  
+                            <h:outputText value="#{document.type}" />  
+                        </p:column>  
+
+                        <f:facet name="footer">  
+                            <p:commandButton value="Détails" icon="ui-icon-search"/>
+                            <p:commandButton value="Bogues" icon="ui-icon-search"/>
+                            
+                            <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
+                            <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
+                        </f:facet>  
+                    </p:treeTable>  
+                </h:form>
+            </ui:define>
+
+
+<!--            <ui:define name="bottom">
+                bottom
+            </ui:define>-->
+
+        </ui:composition>
+
+    </body>
+</html>
