@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -18,15 +20,34 @@
         </div>
         <div>
             <div id="left">
-                <ui:insert name="left">Left</ui:insert>
+                <ui:insert name="left">
+                    <h:form>
+                        <p:menu>  
+                            <p:submenu label="Projets">  
+                                <p:menuitem value="Mes projets" />  
+                                <p:menuitem value="Projets publics" />  
+                                <p:menuitem value="Activité récente" />  
+                            </p:submenu>  
+                            <p:submenu label="Bogues">  
+                                <p:menuitem value="Liste des bogues" />  
+                                <p:menuitem value="Signaler un bogue" /> 
+                            </p:submenu>
+                            <p:submenu label="Tâches">  
+                                <p:menuitem value="Mes projets - tâches" />  
+                            </p:submenu> 
+                            <p:separator /> 
+                            <p:menuitem value="Se déconnecter" />
+                        </p:menu>
+                    </h:form>
+                </ui:insert>
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>
             </div>
         </div>
-        <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
-        </div>
+<!--        <div id="bottom">-->
+            <!--            <ui:insert name="bottom">Bottom</ui:insert>-->
+<!--        </div>-->
 
     </h:body>
 

@@ -18,10 +18,13 @@ public class Document implements Serializable {
         
         private String type;
         
-        public Document(String name, String size, String type) {
+        private String status;
+        
+        public Document(String name, String size, String type, String status) {
                 this.name = name;
                 this.size = size;
                 this.type = type;
+                this.status = status;
         }
 
         public String getName() {
@@ -46,6 +49,14 @@ public class Document implements Serializable {
 
         public void setType(String type) {
                 this.type = type;
+        }
+        
+        public String getStatus() {
+                return status;
+        }
+
+        public void setStatus(String status) {
+                this.status = status;
         }
 
         @Override

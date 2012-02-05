@@ -14,9 +14,9 @@
                 top
             </ui:define>-->
 
-            <ui:define name="left">
+<!--            <ui:define name="left">
                 menu
-            </ui:define>
+            </ui:define>-->
 
 
             <ui:define name="content">
@@ -40,21 +40,29 @@
 
                         <p:column style="width:100px">  
                             <f:facet name="header">  
-                                Size  
+                                Date début  
                             </f:facet>  
                             <h:outputText value="#{document.size}" />  
                         </p:column>  
 
                         <p:column style="width:100px">  
                             <f:facet name="header">  
-                                Type  
+                                Date fin 
                             </f:facet>  
                             <h:outputText value="#{document.type}" />  
+                        </p:column>  
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                Statut 
+                            </f:facet>  
+                            <h:outputText value="#{document.status}" />  
                         </p:column>  
 
                         <f:facet name="footer">  
                             <p:commandButton value="Détails" icon="ui-icon-search"/>
                             <p:commandButton value="Bogues" icon="ui-icon-search"/>
+                            <p:commandButton value="Tâches" icon="ui-icon-search"/>
+                            <p:commandButton value="Commentaires" icon="ui-icon-search"/>
                             
                             <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
                             <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
