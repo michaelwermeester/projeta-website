@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://luckycode.be:8080/projeta-webservice/resources/users" uri="src/conf/xml-resources/web-service-references/users/wsdl/luckycode.be_8080/projeta-webservice/resources/users"/>
+</catalog>

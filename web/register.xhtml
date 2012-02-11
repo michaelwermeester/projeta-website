@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./projetaDefaultTemplate.xhtml">
+
+            <!--            <ui:define name="top">
+                            top
+                        </ui:define>
+            
+                        <ui:define name="left">
+                            left
+                        </ui:define>-->
+
+            <ui:define name="content">
+                <h:form id="completeform">
+
+                    <!--                    <p:messages showDetail="true" autoUpdate="true" id="messages" />
+                                        <h:messages errorClass="error"/> -->
+
+
+
+                    <p:panelGrid id="regForm">
+                        <p:row>
+                            <p:column><h:outputLabel for="username" value="Nom d'utilisateur : *" /></p:column>
+                            <p:column><p:inputText id="username" label="Nom d'utilisateur" required="true" value="#{registrationBean.username}" validator="#{registrationBean.checkUserIfAvailable}" >
+                                    <f:validateLength minimum="2" maximum="30" />                                    
+                                </p:inputText></p:column>
+                            <p:column>
+                                <p:message id="usernameMessage" for="username" /> 
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel for="pwd1" value="Mot de passe 1: *" />
+                            </p:column>
+
+                            <p:column>
+                                <p:password id="pwd1" value="#{registrationBean.password}" feedback="false" match="pwd2" label="Mot de passe 1" required="true">
+                                    <f:validateLength minimum="3" maximum="24" />
+                                </p:password>
+                            </p:column>
+
+                            <p:column>
+                                <p:message id="pwd1Message" for="pwd1" /> 
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel for="pwd2" value="Mot de passe 2: *" />
+                            </p:column>
+                            <p:column>
+                                <p:password id="pwd2" value="#{registrationBean.password}" feedback="false" label="Mot de passe 2" required="true">  
+                                    <f:validateLength minimum="3" maximum="24" />
+                                </p:password>
+                            </p:column>
+                            <p:column>
+                                <p:message id="pwd2Message" for="pwd2" /> 
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel for="firstName" value="Prénom :" />
+                            </p:column>
+                            <p:column>
+                                <p:inputText id="firstName" label="Prénom" required="false" value="#{registrationBean.firstName}"/>
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel for="lastName" value="Nom :" />
+                            </p:column>
+                            <p:column>
+                                <p:inputText id="lastName" label="Nom" required="false" value="#{registrationBean.lastName}"/>
+                            </p:column>
+                        </p:row>
+
+
+                        <!--                        <p:row>  
+                                                    <p:column colspan="2">
+                                                        <p:message id="captchaMessage" for="captcha" />
+                                                    </p:column>  
+                                                </p:row>-->
+                    </p:panelGrid> 
+
+                    <p:message id="captchaMessage" for="captcha" />
+                    <f:view contentType="text/html">
+                        <p:captcha label="Captcha" id="captcha" language="fr" />
+                    </f:view>
+
+                    <!--                    <p:message id="captchaMessage" for="captcha" />-->
+
+                    <p:panelGrid>
+                        <p:row>
+                            <p:column>
+                                <p:commandButton update="regForm,captchaMessage" value="Save" id="Register" actionListener="#{registrationBean.registerUser}" oncomplete="Recaptcha.reload()" />
+                            </p:column>
+                            <p:column>
+                                <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+                                    <f:facet name="start">  
+                                        <h:graphicImage value="../resources/img/ajaxloading.gif" />  
+                                    </f:facet>  
+
+                                    <f:facet name="complete">  
+                                        <h:outputText value="" />  
+                                    </f:facet>  
+                                </p:ajaxStatus>
+                            </p:column>
+                        </p:row> 
+                    </p:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
