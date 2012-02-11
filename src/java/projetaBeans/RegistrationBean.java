@@ -87,104 +87,67 @@ public class RegistrationBean {
         this.user = user;
     }
 
-    public void registerUser() {
-        
-        
-        
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Test"));
+    public String getEmailAddress() {
+        return user.getEmailAddress();
     }
 
-    public void checkUserIfAvailable(FacesContext context, UIComponent component, 
+    public void setEmailAddress(String emailaddress) {
+        user.setEmailAddress(emailaddress);
+    }
+
+    public String getAddress() {
+        return user.getAddress();
+    }
+
+    public void setAddress(String address) {
+        user.setAddress(address);
+    }
+
+    public String getPhoneNumber() {
+        return user.getPhoneNumber();
+    }
+
+    public void setPhoneNumber(String phonenumber) {
+        user.setPhoneNumber(phonenumber);
+    }
+
+    public void registerUser() {
+    }
+
+    public void checkUserIfAvailable(FacesContext context, UIComponent component,
             Object value) throws ValidatorException {
 
-        String username = (String)value;
-        
+        String username = (String) value;
+
         WSUserHelper userHelper = new WSUserHelper();
         userHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
-        
+
         String wsuserjsonstring = userHelper.findByUsername(username, null);
-        
-        if (wsuserjsonstring.trim().equals(""))
+
+        if (wsuserjsonstring.trim().equals("")) {
             return;
-        
+        }
+
         ObjectMapper mapper = new ObjectMapper();
-        try {            
+        try {
             // Find the node I want using a DOM-like model.
             JsonNode rootNode = mapper.readValue(wsuserjsonstring, JsonNode.class);
             JsonNode interestingObjectNode = rootNode.get("users");
-        
+
             // Parse it into a Java object.
             User[] wsuser = mapper.readValue(interestingObjectNode, User[].class);
-            
-            if ((wsuser[0].getUsername().equals(username)) == true){
+
+            if ((wsuser[0].getUsername().equals(username)) == true) {
                 throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Le nom d'utilisateur existe déjà.",
-                            "Le nom d'utilisateur existe déjà."));
+                        "Le nom d'utilisateur existe déjà."));
             }
-                
-        }catch(Exception ex) {
+
+        } catch (Exception ex) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur.",
-                            ex.getMessage()));
+                    ex.getMessage()));
         }
-        
-        /*throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "exists",
-                            wsuserstring));*/
-        
-        
-        /*ObjectMapper mapper = new ObjectMapper();
-        
-        try {
-            User wsuser = mapper.readValue(wsuserstring, User.class);
-            
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, wsuser.getUsername(),
-                            wsuser.getUsername()));
-        } catch (Exception ex) {
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-                            "Error"));
-        }*/
-        
-        
-        /*if (UserHelper.userExists((String)value) == true){
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "exists",
-                            "exists"));
-        }
-        else {
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "no",
-                            "no"));
-        }*/
-        
-        
-        
-        /*throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, (String)value,
-                            (String)value));*/
-        
 
-        /*try {
-            UserFacadeREST userService = new UserFacadeREST();
-            
-            tmpUser = userService.getUser((String)value, -1);
-
-            if (tmpUser == null) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Username valid"));
-                //FacesContext.getCurrentInstance().addMessage("completeform:username", new FacesMessage("Username valid"));
-            
-                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Not valid",
-                            "Not valid"));
-            
-            } else {
-                //FacesContext.getCurrentInstance().addMessage("completeform:username", new FacesMessage("Duplicate user"));
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Duplicate user"));
-                
-                throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Not valid",
-                            "Not valid"));
-            }
-
-        } catch (Exception ex) {
-            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("error"));
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(),
-                            ex.toString()));
-        }*/
     }
-
 //    public void submit(ActionEvent event) {
 //        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Correct", "Correct");
 //
