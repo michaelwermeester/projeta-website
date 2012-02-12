@@ -43,7 +43,7 @@
                             </p:column>
 
                             <p:column>
-                                <p:password id="pwd1" value="#{registrationBean.password}" feedback="false" match="pwd2" label="Mot de passe 1" required="true">
+                                <p:password id="pwd1" value="#{registrationBean.password}" match="pwd2" label="Mot de passe 1" required="true">
                                     <f:validateLength minimum="3" maximum="24" />
                                 </p:password>
                             </p:column>
@@ -58,7 +58,7 @@
                                 <h:outputLabel for="pwd2" value="Mot de passe 2: *" />
                             </p:column>
                             <p:column>
-                                <p:password id="pwd2" value="#{registrationBean.password}" feedback="false" label="Mot de passe 2" required="true">  
+                                <p:password id="pwd2" value="#{registrationBean.password}" label="Mot de passe 2" required="true">  
                                     <f:validateLength minimum="3" maximum="24" />
                                 </p:password>
                             </p:column>
