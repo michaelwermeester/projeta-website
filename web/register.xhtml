@@ -127,9 +127,17 @@
                     <!--                    <p:message id="captchaMessage" for="captcha" />-->
 
                     <p:panelGrid>
+<!--                        <p:row>
+                            <p:column>
+                                <p:message id="createUserMessage" for="Register" />
+<h:messages id="messages" errorClass="errorMessage" infoClass="infoMessage"
+                        warnClass="warnMessage" globalOnly="true"></h:messages>
+                            </p:column>
+                        </p:row>-->
+                  
                         <p:row>
                             <p:column>
-                                <p:commandButton update="regForm,captchaMessage" value="Save" id="Register" actionListener="#{registrationBean.registerUser}" oncomplete="Recaptcha.reload()" />
+                                <p:commandButton update="regForm,captchaMessage" value="Créer le compte" action="#{registrationBean.registerUser}" id="Register" oncomplete="Recaptcha.reload()" />
                             </p:column>
                             <p:column>
                                 <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  

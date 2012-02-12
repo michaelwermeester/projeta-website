@@ -13,6 +13,8 @@ import java.security.NoSuchAlgorithmException;
 import be.luckycode.projetawebservice.User;
 import java.util.List;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import org.codehaus.jackson.JsonParseException;
@@ -31,20 +33,25 @@ import pojeta.Common;
  *
  * @author michael
  */
-@ManagedBean
+@ManagedBean(name="registrationBean")
 @RequestScoped
+//@ViewScoped
 public class RegistrationBean {
 
 //    private String password;
 //    private String username;
 //    private String firstname;
 //    private String lastname;
+    
+    private Boolean hasCreatedUser = false;
+    
     private User user = new User();
 
     /**
      * Creates a new instance of RegistrationBean
      */
     public RegistrationBean() {
+        
     }
 
     public String getPassword() {
@@ -110,9 +117,28 @@ public class RegistrationBean {
     public void setPhoneNumber(String phonenumber) {
         user.setPhoneNumber(phonenumber);
     }
-
-    public void registerUser() {
+    
+    public String registerUser() {
+        
+        //WSUserHelper userHelper = new WSUserHelper();
+        //userHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+        
+        //String createdUserJsonString = userHelper.createNewUser(user);
+        
+//        if (hasCreatedUser == true) {
+//        
+//        
+        hasCreatedUser = true;
+        
+        
+        return "regConfirmation.xhtml?faces-redirect=true";
+//        }
+//        else {
+//            return "register.xhtml?faces-redirect=true";
+           
+//        }
     }
+    
 
     public void checkUserIfAvailable(FacesContext context, UIComponent component,
             Object value) throws ValidatorException {
