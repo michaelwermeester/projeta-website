@@ -20,7 +20,7 @@
             <ui:insert name="top">Top</ui:insert>
             <div style="float:right;">
                 <h:form id="loginForm">
-                    <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="loginForm.xhtml?faces-redirect=true" />
+                    <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="login.xhtml?faces-redirect=true" />
                     <p:commandLink id="registerLink" value="S'inscrire" global="false" rendered="#{! authBackingBean.loggedIn}" action="register.xhtml?faces-redirect=true" />
                     <p:commandLink id="logoutLink" value="Se déconnecter" global="false" rendered="#{authBackingBean.loggedIn}" />
                 </h:form>

@@ -92,7 +92,7 @@ public class AuthBackingBean {
 
             FacesContext.getCurrentInstance().addMessage(null, msg);
             
-            return "loginForm.xhtml";
+            return "login.xhtml";
         }
     }
 }
