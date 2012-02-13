@@ -9,16 +9,45 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <!--        <h:form><p:commandButton value="Hello from PrimeFaces" onclick="dlg1.show();" type="button" /><p:dialog header="PrimeFaces Dialog" widgetVar="dlg1" width="500">For more information visit <a href="http://primefaces.org">http://primefaces.org</a>.</p:dialog></h:form>-->
-                <p:panel header="Login From">
-                    <form method="post" action="j_security_check">
-                        Username: <input type="text" name="j_username" />
-                        Password: <input type="password" name="j_password" />
-                        <br />
-                        <input type="submit" value="Login" />
-                        <input type="reset" value="Reset" />
-                    </form> 
-                </p:panel>
 
+        <ui:composition template="./projetaDefaultTemplate.xhtml">
+
+            <!--        <h:form><p:commandButton value="Hello from PrimeFaces" onclick="dlg1.show();" type="button" /><p:dialog header="PrimeFaces Dialog" widgetVar="dlg1" width="500">For more information visit <a href="http://primefaces.org">http://primefaces.org</a>.</p:dialog></h:form>-->
+
+
+            <!--        <p:panel header="Login From">
+                        <form method="post" action="j_security_check">
+                            Username: <input type="text" name="j_username" />
+                            Password: <input type="password" name="j_password" />
+                            <br />
+                            <input type="submit" value="Login" />
+            
+                        </form> 
+                    </p:panel>-->
+
+            <ui:define name="content">
+                <h:form id="loginSiteForm">  
+
+                    <p:messages globalOnly="true" autoUpdate="true" />
+
+                    <h:panelGrid columns="2" cellpadding="5">  
+                        <h:outputLabel for="username" value="Username:" />  
+                        <p:inputText value="#{authBackingBean.username}"   
+                                     id="username" label="username" />  
+
+                        <h:outputLabel for="password" value="Password:" />  
+                        <h:inputSecret value="#{authBackingBean.password}"   
+                                       id="password" label="password" />  
+
+                        <f:facet name="footer">  
+                            <p:commandButton id="loginButton" value="Login"    
+                                             action="#{authBackingBean.login}"   
+                                              />  
+                        </f:facet>  
+                    </h:panelGrid>  
+
+                </h:form> 
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>

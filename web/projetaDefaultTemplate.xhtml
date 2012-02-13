@@ -18,11 +18,21 @@
 
         <div id="top" class="top">
             <ui:insert name="top">Top</ui:insert>
+            <div style="float:right;">
+                <h:form id="loginForm">
+                    <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="loginForm.xhtml?faces-redirect=true" />
+                    <p:commandLink id="registerLink" value="S'inscrire" global="false" rendered="#{! authBackingBean.loggedIn}" action="register.xhtml?faces-redirect=true" />
+                    <p:commandLink id="logoutLink" value="Se déconnecter" global="false" rendered="#{authBackingBean.loggedIn}" />
+                </h:form>
+            </div>
         </div>
+        <!--        <div style="position: absolute; top: 20px; right: 20px;">
+                    test
+                </div>-->
         <div>
             <div id="left">
                 <ui:insert name="left">
-                    <h:form>
+                    <h:form id="menuForm">
                         <p:menu>  
                             <p:submenu label="Projets">  
                                 <p:menuitem value="Mes projets" />  
@@ -42,7 +52,7 @@
                                 <p:menuitem value="Supprimé" />
                             </p:submenu> 
                             <p:separator /> 
-<!--                            <p:menuitem value="Contacter administrateur" />-->
+                            <!--                            <p:menuitem value="Contacter administrateur" />-->
                             <p:menuitem value="Se déconnecter" />
                         </p:menu>
                     </h:form>
