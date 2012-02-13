@@ -93,7 +93,7 @@ public class AuthBackingBean {
         try {
             request.login(username, password);
             
-            return "regConfirmation.xhtml?faces-redirect=true";
+            return "index.xhtml?faces-redirect=true";
         } catch (Exception ex) {
             
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login incorrect", "Login incorrect");
