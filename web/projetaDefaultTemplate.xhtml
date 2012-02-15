@@ -22,7 +22,7 @@
                 <h:form id="loginForm">
                     <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="login.xhtml?faces-redirect=true" />
                     <p:commandLink id="registerLink" value="S'inscrire" global="false" rendered="#{! authBackingBean.loggedIn}" action="register.xhtml?faces-redirect=true" />
-                    <p:commandLink id="logoutLink" value="Se déconnecter" global="false" rendered="#{authBackingBean.loggedIn}" />
+                    <p:commandLink id="logoutLink" value="Se déconnecter" global="false" rendered="#{authBackingBean.loggedIn}" action="#{authBackingBean.logout}" />
                 </h:form>
             </div>
         </div>
@@ -51,9 +51,9 @@
                                 <p:menuitem value="Envoyé" />
                                 <p:menuitem value="Supprimé" />
                             </p:submenu> 
-                            <p:separator /> 
+<!--                            <p:separator /> -->
                             <!--                            <p:menuitem value="Contacter administrateur" />-->
-                            <p:menuitem value="Se déconnecter" />
+<!--                            <p:menuitem value="Se déconnecter" />-->
                         </p:menu>
                     </h:form>
                 </ui:insert>
