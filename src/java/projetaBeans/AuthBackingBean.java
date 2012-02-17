@@ -7,6 +7,7 @@ package projetaBeans;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -109,7 +110,15 @@ public class AuthBackingBean {
 
             FacesContext.getCurrentInstance().addMessage(null, msg);
             
-            return "login.xhtml";
+            //return "login.xhtml";
+
+            
+            // refresh current page.
+            String viewId = context.getViewRoot().getViewId();
+
+            ViewHandler handler = context.getApplication().getViewHandler();
+
+            return viewId;
         }
     }
 }

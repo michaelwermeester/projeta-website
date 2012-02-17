@@ -22,19 +22,35 @@
 
             <ui:define name="content">
 
+                <p>Votre compte a été créé.</p> 
+                
+                <p>Vous pouvez-vous connecter maintenant.</p>
+                
+                <h:form id="loginSiteForm" rendered="#{! authBackingBean.loggedIn}">  
 
+                    <p:messages globalOnly="true" autoUpdate="true" />
 
+                    <p:panelGrid columns="2">  
+                        <f:facet name="header">  
+                            Login 
+                        </f:facet>  
+                        <h:outputLabel for="username" value="Username:" />  
+                        <p:inputText value="#{authBackingBean.username}"   
+                                     id="username" label="username" />  
 
-                <p:panel header="Login From">
-                    <form method="post" action="j_security_check">
-                        Username: <input type="text" name="j_username" />
-                        Password: <input type="password" name="j_password" />
-                        <br />
-                        <input type="submit" value="Login" />
-                        <input type="reset" value="Reset" />
-                    </form> 
-                </p:panel>
+                        <h:outputLabel for="password" value="Password:" />  
+                        <p:password value="#{authBackingBean.password}"   
+                                    id="password" label="password" feedback="false" />  
 
+                        <f:facet name="footer">  
+                            <p:commandButton id="loginButton" value="Se connecter"    
+                                             action="#{authBackingBean.login}"   
+                                             />  
+                        </f:facet>  
+                    </p:panelGrid>  
+
+                </h:form> 
+                
             </ui:define>
 
 

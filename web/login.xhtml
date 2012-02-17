@@ -29,7 +29,7 @@
                     </p:panel>-->
                 
                 
-                <h:form id="loginSiteForm">  
+                <h:form id="loginSiteForm" rendered="#{! authBackingBean.loggedIn}">  
 
                     <p:messages globalOnly="true" autoUpdate="true" />
 

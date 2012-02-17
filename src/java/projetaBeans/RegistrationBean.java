@@ -33,7 +33,7 @@ import pojeta.Common;
  *
  * @author michael
  */
-@ManagedBean(name="registrationBean")
+@ManagedBean(name = "registrationBean")
 @RequestScoped
 //@ViewScoped
 public class RegistrationBean {
@@ -42,16 +42,12 @@ public class RegistrationBean {
 //    private String username;
 //    private String firstname;
 //    private String lastname;
-    
-    private Boolean hasCreatedUser = false;
-    
     private User user = new User();
 
     /**
      * Creates a new instance of RegistrationBean
      */
     public RegistrationBean() {
-        
     }
 
     public String getPassword() {
@@ -59,7 +55,7 @@ public class RegistrationBean {
     }
 
     public void setPassword(String password) throws NoSuchAlgorithmException {
-        user.setPassword(password);
+        user.setPasswordNoEncrypt(password);
     }
 
     public String getUsername() {
@@ -117,28 +113,50 @@ public class RegistrationBean {
     public void setPhoneNumber(String phonenumber) {
         user.setPhoneNumber(phonenumber);
     }
-    
+
     public String registerUser() {
-        
-        //WSUserHelper userHelper = new WSUserHelper();
-        //userHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
-        
-        //String createdUserJsonString = userHelper.createNewUser(user);
-        
-//        if (hasCreatedUser == true) {
-//        
-//        
-        hasCreatedUser = true;
-        
-        
-        return "regConfirmation.xhtml?faces-redirect=true";
+
+        WSUserHelper userHelper = new WSUserHelper();
+        userHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+
+        String createdUserJsonString = userHelper.createNewUserWithUserRole(user);
+
+        if (createdUserJsonString.trim().equals("")) {
+            return "register.xhtml";
+        } else {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                // Find the node I want using a DOM-like model.
+                JsonNode rootNode = mapper.readValue(createdUserJsonString, JsonNode.class);
+                JsonNode interestingObjectNode = rootNode.get("users");
+
+                // Parse it into a Java object.
+                User[] wsuser = mapper.readValue(interestingObjectNode, User[].class);
+
+                if ((wsuser[0].getUsername().equals(this.user.getUsername())) == true) {
+                    return "regConfirmation.xhtml?faces-redirect=true";
+                } else {
+                    throw new Exception();
+                }
+
+            } catch (Exception ex) {
+                
+//                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ex.getMessage());
+//                FacesContext.getCurrentInstance().addMessage(null, msg);
+                
+                return "register.xhtml";
+            }
+        }
+
+
+
+        //return "regConfirmation.xhtml?faces-redirect=true";
 //        }
 //        else {
 //            return "register.xhtml?faces-redirect=true";
-           
+
 //        }
     }
-    
 
     public void checkUserIfAvailable(FacesContext context, UIComponent component,
             Object value) throws ValidatorException {

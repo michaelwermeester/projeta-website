@@ -139,4 +139,9 @@ public class WSUserHelper {
         return ctx;
     }
     
+    public String createNewUserWithUserRole(Object requestEntity) throws UniformInterfaceException {
+        return webResource.path("createWithUserRole").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(String.class, requestEntity);
+    }
+    
+    
 }
