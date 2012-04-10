@@ -4,17 +4,25 @@
  */
 package projetaBeans;
 
+import be.luckycode.projetawebservice.Project;
+import be.luckycode.projetawebservice.ProjectDummy;
+import be.luckycode.projetawebservice.ProjectSimpleWebSite;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import java.io.Serializable;  
+import java.util.List;
 import javax.faces.application.FacesMessage;  
 import javax.faces.context.FacesContext;  
   
 import org.primefaces.model.DefaultTreeNode;  
 import org.primefaces.model.TreeNode;  
+import pojeta.Common;
 
 import pojeta.Document;
+import pojeta.WSProjectHelper;
+
+import java.lang.Class;
  
 /**
  *
@@ -28,12 +36,56 @@ public class DocumentController implements Serializable {
       
     private TreeNode selectedNode;  
       
-    private TreeNode[] selectedNodes;  
+    private TreeNode[] selectedNodes; 
+    
+    WSProjectHelper wph;
       
     public DocumentController() {  
+          
+        wph = new WSProjectHelper();
+        wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+    }  
+      
+    public TreeNode getRoot() {  
+        
+        
         root = new DefaultTreeNode("root", null);  
           
-        TreeNode documents = new DefaultTreeNode(new Document("Site web AT systems", "-", "-", "En cours"), root);  
+        
+        ProjectDummy projDummy = wph.findProjectsPOJO(ProjectDummy.class);
+        //List<Project> listProj = wph.findProjectsPOJO(List.class);
+        
+        // works !
+        /*for (Project p : projDummy.getListProject()) {
+         
+            if (p.getProjectTitle() != null) {
+                TreeNode test = new DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En cours"), root);
+            }
+        }*/
+        
+        for (ProjectSimpleWebSite p : projDummy.getListProject()) {
+         
+            if (p.getProjectTitle() != null) {
+                TreeNode test = new DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En cours"), root);
+            }
+        }
+        
+        /*for (int i = 0; i < 50; i++) {
+            //TreeNode test = new DefaultTreeNode(new Document("test", "-", "-", "En cours"), root);
+        }*/
+        
+        /*for (ProjectSimpleWebSite p : projDummy.getListProject()) {
+         
+            if (p.getProjectTitle() != null) {
+                TreeNode test = new DefaultTreeNode(p, root);
+            }
+        }*/
+        
+        //Project p = wph.find(Project.class, "6");
+        //TreeNode test = new DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En cours"), root);
+        
+        
+        /*TreeNode documents = new DefaultTreeNode(new Document("Site web AT systems", "-", "-", "En cours"), root);  
         TreeNode pictures = new DefaultTreeNode(new Document("ERP - Module facturation", "-", "-", "Point zéro"), root);  
         TreeNode movies = new DefaultTreeNode(new Document("Upgrade serveurs", "-", "-", "Point zéro"), root);  
           
@@ -58,10 +110,8 @@ public class DocumentController implements Serializable {
         TreeNode carlitosWay = new DefaultTreeNode("mp3", new Document("Carlitos' Way", "24 GB", "Movie File", "Point zéro"), pacino);  
           
         TreeNode goodfellas = new DefaultTreeNode("mp3", new Document("Goodfellas", "23 GB", "Movie File", "Point zéro"), deniro);  
-        TreeNode untouchables = new DefaultTreeNode("mp3", new Document("Untouchables", "17 GB", "Movie File", "Point zéro"), deniro);  
-    }  
-      
-    public TreeNode getRoot() {  
+        TreeNode untouchables = new DefaultTreeNode("mp3", new Document("Untouchables", "17 GB", "Movie File", "Point zéro"), deniro);
+        */
         return root;  
     }  
   
