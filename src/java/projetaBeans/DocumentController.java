@@ -39,14 +39,12 @@ public class DocumentController implements Serializable {
     private TreeNode[] selectedNodes; 
     
     WSProjectHelper wph;
+    
       
     public DocumentController() {  
           
         wph = new WSProjectHelper();
         wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
-    }  
-      
-    public TreeNode getRoot() {  
         
         
         root = new DefaultTreeNode("root", null);  
@@ -66,9 +64,17 @@ public class DocumentController implements Serializable {
         for (ProjectSimpleWebSite p : projDummy.getListProject()) {
          
             if (p.getProjectTitle() != null) {
-                TreeNode test = new DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En cours"), root);
+                DefaultTreeNode treeNode = new DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En cours"), root);
+                
+                treeAddChildProjects(treeNode, p);
             }
         }
+    }  
+      
+    public TreeNode getRoot() {  
+        
+        
+        
         
         /*for (int i = 0; i < 50; i++) {
             //TreeNode test = new DefaultTreeNode(new Document("test", "-", "-", "En cours"), root);
@@ -114,6 +120,21 @@ public class DocumentController implements Serializable {
         */
         return root;  
     }  
+    
+    public void treeAddChildProjects(DefaultTreeNode treeNode, ProjectSimpleWebSite project) {
+        
+        if (project != null && project.getChildProject() != null) {
+        
+        for (ProjectSimpleWebSite p : project.getChildProject()) {
+         
+            if (p.getProjectTitle() != null) {
+                DefaultTreeNode defTreeNode = new DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En cours"), treeNode);
+                
+                treeAddChildProjects(defTreeNode, p);
+            }
+        }
+        }
+    }
   
     public void setRoot(TreeNode root) {  
         this.root = root;  
