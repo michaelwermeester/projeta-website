@@ -24,8 +24,8 @@
                 <h:form id="form"> 
                     <p:growl id="messages" showDetail="true" />  
 
-                    <p:treeTable value="#{documentController.root}" var="document"  
-                                 selection="#{documentController.selectedNode}" selectionMode="single">  
+                    <p:treeTable value="#{projectController.root}" var="projectSimple"  
+                                 selection="#{projectController.selectedNode}" selectionMode="single">  
 
                         <f:facet name="header">  
                             Projets 
@@ -35,27 +35,27 @@
                             <f:facet name="header">  
                                 Nom  
                             </f:facet>  
-                            <h:outputText value="#{document.name}" />
+                            <h:outputText value="#{projectSimple.name}" />
                         </p:column>  
 
                         <p:column style="width:100px">  
                             <f:facet name="header">  
                                 Date début  
                             </f:facet>  
-                            <h:outputText value="#{document.size}" />
+                            <h:outputText value="#{projectSimple.size}" />
                         </p:column>  
 
                         <p:column style="width:100px">  
                             <f:facet name="header">  
                                 Date fin 
                             </f:facet>  
-                            <h:outputText value="#{document.type}" />
+                            <h:outputText value="#{projectSimple.type}" />
                         </p:column>  
                         <p:column style="width:100px">  
                             <f:facet name="header">  
                                 Statut 
                             </f:facet>  
-                            <h:outputText value="#{document.status}" />
+                            <h:outputText value="#{projectSimple.status}" />
                         </p:column>  
 
                         <f:facet name="footer">  

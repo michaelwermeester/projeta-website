@@ -10,7 +10,7 @@ package pojeta;
  */
 import java.io.Serializable;
 
-public class Document implements Serializable {
+public class ProjectSimple implements Serializable {
 
         private String name;
         
@@ -20,7 +20,7 @@ public class Document implements Serializable {
         
         private String status;
         
-        public Document(String name, String size, String type, String status) {
+        public ProjectSimple(String name, String size, String type, String status) {
                 this.name = name;
                 this.size = size;
                 this.type = type;

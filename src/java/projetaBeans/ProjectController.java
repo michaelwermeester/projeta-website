@@ -19,10 +19,8 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;  
 import pojeta.Common;
 
-import pojeta.Document;
+import pojeta.ProjectSimple;
 import pojeta.WSProjectHelper;
-
-import java.lang.Class;
  
 /**
  *
@@ -30,7 +28,7 @@ import java.lang.Class;
  */
 @ManagedBean
 @SessionScoped
-public class DocumentController implements Serializable {  
+public class ProjectController implements Serializable {  
   
     private TreeNode root;  
       
@@ -41,7 +39,7 @@ public class DocumentController implements Serializable {
     WSProjectHelper wph;
     
       
-    public DocumentController() {  
+    public ProjectController() {  
           
         wph = new WSProjectHelper();
         wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
@@ -64,7 +62,7 @@ public class DocumentController implements Serializable {
         for (ProjectSimpleWebSite p : projDummy.getListProject()) {
          
             if (p.getProjectTitle() != null) {
-                DefaultTreeNode treeNode = new DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En cours"), root);
+                DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectTitle(), "-", "-", "En cours"), root);
                 
                 treeAddChildProjects(treeNode, p);
             }
@@ -128,7 +126,7 @@ public class DocumentController implements Serializable {
         for (ProjectSimpleWebSite p : project.getChildProject()) {
          
             if (p.getProjectTitle() != null) {
-                DefaultTreeNode defTreeNode = new DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En cours"), treeNode);
+                DefaultTreeNode defTreeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectTitle(), "-", "-", "En cours"), treeNode);
                 
                 treeAddChildProjects(defTreeNode, p);
             }
