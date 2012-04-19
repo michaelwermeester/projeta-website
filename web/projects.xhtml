@@ -22,6 +22,7 @@
             <ui:define name="content">
                 
                 <h:form id="form"> 
+                    
                     <p:growl id="messages" showDetail="true" />  
 
                     <p:treeTable value="#{projectController.root}" var="projectSimple"  
@@ -59,7 +60,9 @@
                         </p:column>  
 
                         <f:facet name="footer">  
-                            <p:commandButton value="Détails" icon="ui-icon-search"/>
+                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{projectDetailController.showProjectDetails()}" >
+                                <f:setPropertyActionListener target="#{projectDetailController.strProjectId}" value="5" />
+                            </p:commandButton>
                             <p:commandButton value="Bogues" icon="ui-icon-search"/>
                             <p:commandButton value="Tâches" icon="ui-icon-search"/>
                             <p:commandButton value="Commentaires" icon="ui-icon-search"/>

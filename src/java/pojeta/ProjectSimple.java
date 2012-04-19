@@ -20,7 +20,18 @@ public class ProjectSimple implements Serializable {
         
         private String status;
         
+        private int id;
+        
         public ProjectSimple(String name, String size, String type, String status) {
+                this.name = name;
+                this.size = size;
+                this.type = type;
+                this.status = status;
+        }
+        
+        public ProjectSimple(int id, String name, String size, String type, String status) {
+                
+                this.id = id;
                 this.name = name;
                 this.size = size;
                 this.type = type;
@@ -63,4 +74,18 @@ public class ProjectSimple implements Serializable {
         public String toString() {
                 return name;
         }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 }
