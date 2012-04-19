@@ -40,9 +40,11 @@ public class ProjectDetailController {
     
     public String showProjectDetails() {
         
-        this.projectId = Integer.parseInt(getStrProjectId());
+        //this.projectId = Integer.parseInt(getStrProjectId());
         
-        return "projectDetail.xhtml";
+        this.projectId = projectSimple.getId();
+        
+        return "projectDetail.xhtml?faces-redirect=true";
     }
 
     /**
