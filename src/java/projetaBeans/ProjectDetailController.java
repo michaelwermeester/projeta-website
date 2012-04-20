@@ -4,10 +4,13 @@
  */
 package projetaBeans;
 
+import be.luckycode.projetawebservice.Project;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import pojeta.Common;
 import pojeta.ProjectSimple;
+import pojeta.WSProjectHelper;
 
 /**
  *
@@ -23,9 +26,13 @@ public class ProjectDetailController {
     //@ManagedProperty("#{param.strProjectId}")
     private String strProjectId;
     
-    private int projectId;
+    private Integer projectId;
     
     private ProjectSimple projectSimple;
+    
+    private Project project;
+    
+    private WSProjectHelper wph;
     
     public ProjectDetailController() {
     }
@@ -44,6 +51,11 @@ public class ProjectDetailController {
         
         this.projectId = projectSimple.getId();
         
+        wph = new WSProjectHelper();
+        wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+        
+        this.project = wph.find(Project.class, this.projectId.toString());
+        
         return "projectDetail.xhtml?faces-redirect=true";
     }
 
@@ -52,20 +64,6 @@ public class ProjectDetailController {
      */
     public int getProjectId() {
         return projectId;
-    }
-
-    /**
-     * @return the project
-     */
-    public ProjectSimple getProject() {
-        return projectSimple;
-    }
-
-    /**
-     * @param project the project to set
-     */
-    public void setProject(ProjectSimple project) {
-        this.projectSimple = project;
     }
 
     /**
@@ -94,6 +92,20 @@ public class ProjectDetailController {
      */
     public void setProjectSimple(ProjectSimple projectSimple) {
         this.projectSimple = projectSimple;
+    }
+
+    /**
+     * @return the project
+     */
+    public Project getProject() {
+        return project;
+    }
+
+    /**
+     * @param project the project to set
+     */
+    public void setProject(Project project) {
+        this.project = project;
     }
     
     
