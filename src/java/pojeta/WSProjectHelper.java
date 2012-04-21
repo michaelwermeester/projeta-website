@@ -81,7 +81,7 @@ public class WSProjectHelper {
 
     public <T> T findProjectsPOJO(Class<T> responseType) throws UniformInterfaceException {
         WebResource resource = webResource;
-        resource = resource.path("test");
+        resource = resource.path("wsprojects");
         return resource.get(responseType);
     }
 
