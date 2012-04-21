@@ -24,7 +24,51 @@
                 <h:form id="form"> 
                     
                     <p:growl id="messages" showDetail="true" />  
+                    
+                    <p:treeTable value="#{taskController.root}" var="projectSimple"  
+                                 selection="#{taskController.selectedNode}" selectionMode="single">  
 
+                        <f:facet name="header">  
+                            Projets 
+                        </f:facet>  
+
+                        <p:column style="width:150px">  
+                            <f:facet name="header">  
+                                Nom  
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.name}" />
+                        </p:column>  
+
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                Date début  
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.size}" />
+                        </p:column>  
+
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                Date fin 
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.type}" />
+                        </p:column>  
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                Statut 
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.status}" />
+                        </p:column>  
+
+                        <f:facet name="footer">  
+                            
+                            <p:commandButton value="Bogues" icon="ui-icon-search"/>
+                            
+                            <p:commandButton value="Commentaires" icon="ui-icon-search"/>
+                            
+                            <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
+                            <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
+                        </f:facet>  
+                    </p:treeTable>
                     
                 </h:form>
             </ui:define>
