@@ -26,90 +26,87 @@ import java.io.Serializable;
 @SessionScoped
 public class TaskController implements Serializable {
 
-    
     private Integer projectId;
-    
     private ProjectSimple projectSimple;
-    
     private WSTaskHelper taskHelper;
-    
-    
-    
-    private TreeNode root;  
-      
-    private TreeNode selectedNode;  
-      
-    private TreeNode[] selectedNodes; 
-    
+    private TreeNode root;
+    private TreeNode selectedNode;
+    private TreeNode[] selectedNodes;
+
     /**
      * Creates a new instance of TaskController
      */
     public TaskController() {
     }
-    
+
     public String showTasks() {
-        
-        
-        this.projectId = projectSimple.getId();
-        
-        taskHelper = new WSTaskHelper();
-        taskHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
-        
-        root = new DefaultTreeNode("root", null);  
-          
-        
-        ProjectDummy projDummy = taskHelper.findTasksByProjectIdPOJO(ProjectDummy.class, this.projectId.toString());
-        
-        for (ProjectSimpleWebSite p : projDummy.getListProject()) {
-         
-            if (p.getProjectTitle() != null) {
-                DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), "-", "-", "En cours"), root);
-                
-                treeAddChildProjects(treeNode, p);
+
+        try {
+            this.projectId = projectSimple.getId();
+
+            taskHelper = new WSTaskHelper();
+            taskHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+
+            root = new DefaultTreeNode("root", null);
+
+
+            ProjectDummy projDummy = taskHelper.findTasksByProjectIdPOJO(ProjectDummy.class, this.projectId.toString());
+
+            for (ProjectSimpleWebSite p : projDummy.getListProject()) {
+
+                if (p.getProjectTitle() != null) {
+                    DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), "-", "-", "En cours"), root);
+
+                    treeAddChildProjects(treeNode, p);
+                }
             }
+
+            return "tasks.xhtml?faces-redirect=true";
+        } catch (Exception e) {
+            // No tasks...
+            return "";
         }
-        
-        return "tasks.xhtml?faces-redirect=true";
+
     }
-    
+
     public void treeAddChildProjects(DefaultTreeNode treeNode, ProjectSimpleWebSite project) {
-        
+
         if (project != null && project.getChildProject() != null) {
-        
-        for (ProjectSimpleWebSite p : project.getChildProject()) {
-         
-            if (p.getProjectTitle() != null) {
-                DefaultTreeNode defTreeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), "-", "-", "En cours"), treeNode);
-                
-                treeAddChildProjects(defTreeNode, p);
+
+            for (ProjectSimpleWebSite p : project.getChildProject()) {
+
+                if (p.getProjectTitle() != null) {
+                    DefaultTreeNode defTreeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), "-", "-", "En cours"), treeNode);
+
+                    treeAddChildProjects(defTreeNode, p);
+                }
             }
         }
-        }
     }
-    
-    public TreeNode getRoot() {  
+
+    public TreeNode getRoot() {
         return root;
     }
-    
-    public void setRoot(TreeNode root) {  
-        this.root = root;  
-    }  
-  
-    public TreeNode getSelectedNode() {  
-        return selectedNode;  
-    }  
-  
-    public void setSelectedNode(TreeNode selectedNode) {  
-        this.selectedNode = selectedNode;  
-    }  
-  
-    public TreeNode[] getSelectedNodes() {  
-        return selectedNodes;  
-    }  
-  
-    public void setSelectedNodes(TreeNode[] selectedNodes) {  
-        this.selectedNodes = selectedNodes;  
-    } 
+
+    public void setRoot(TreeNode root) {
+        this.root = root;
+    }
+
+    public TreeNode getSelectedNode() {
+        return selectedNode;
+    }
+
+    public void setSelectedNode(TreeNode selectedNode) {
+        this.selectedNode = selectedNode;
+    }
+
+    public TreeNode[] getSelectedNodes() {
+        return selectedNodes;
+    }
+
+    public void setSelectedNodes(TreeNode[] selectedNodes) {
+        this.selectedNodes = selectedNodes;
+    }
 
     /**
      * @return the projectId
