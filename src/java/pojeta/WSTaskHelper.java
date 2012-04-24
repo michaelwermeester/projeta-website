@@ -95,13 +95,7 @@ public class WSTaskHelper {
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
-    public <T> T find_XML(Class<T> responseType, String id) throws UniformInterfaceException {
-        WebResource resource = webResource;
-        resource = resource.path(java.text.MessageFormat.format("{0}", new Object[]{id}));
-        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
-    }
-
-    public <T> T find_JSON(Class<T> responseType, String id) throws UniformInterfaceException {
+    public <T> T find(Class<T> responseType, String id) throws UniformInterfaceException {
         WebResource resource = webResource;
         resource = resource.path(java.text.MessageFormat.format("{0}", new Object[]{id}));
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);

@@ -61,8 +61,9 @@
 
                         <f:facet name="footer">  
                             
-                            <p:commandButton value="Bogues" icon="ui-icon-search"/>
-                            
+                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{taskDetailController.showTaskDetails()}" >
+                                <f:setPropertyActionListener target="#{taskDetailController.projectSimple}" value="#{taskController.selectedNode.data}" />
+                            </p:commandButton>
                             <p:commandButton value="Commentaires" icon="ui-icon-search"/>
                             
                             <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->

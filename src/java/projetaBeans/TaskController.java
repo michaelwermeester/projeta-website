@@ -15,6 +15,8 @@ import pojeta.Common;
 import pojeta.ProjectSimple;
 import pojeta.WSTaskHelper;
 
+import java.io.Serializable;
+
 /**
  *
  * @author michael
@@ -22,7 +24,7 @@ import pojeta.WSTaskHelper;
 @ManagedBean
 //@ViewScoped
 @SessionScoped
-public class TaskController {
+public class TaskController implements Serializable {
 
     
     private Integer projectId;
