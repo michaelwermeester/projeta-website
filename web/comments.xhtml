@@ -29,6 +29,9 @@
                             <h:outputText value="#{comment.userCreated.username}" /> <br />
                             <h:outputText value="#{comment.userCreated.fullName}" /> <br />
                         </ui:repeat>
+                    
+                        <p:inputTextarea id="inputareaComment" rows="9" cols="100"/> 
+                        <p:commandButton value="Envoyer" icon="ui-icon-search"/>
                 </h:form>
             </ui:define>
 

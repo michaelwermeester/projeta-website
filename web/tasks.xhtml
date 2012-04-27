@@ -64,7 +64,9 @@
                             <p:commandButton value="Détails" icon="ui-icon-search" action="#{taskDetailController.showTaskDetails()}" >
                                 <f:setPropertyActionListener target="#{taskDetailController.projectSimple}" value="#{taskController.selectedNode.data}" />
                             </p:commandButton>
-                            <p:commandButton value="Commentaires" icon="ui-icon-search"/>
+                            <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
+                                <f:setPropertyActionListener target="#{commentController.project}" value="#{taskController.selectedNode.data}" />
+                            </p:commandButton>
                             
                             <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
                             <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->

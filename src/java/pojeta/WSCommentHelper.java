@@ -35,6 +35,12 @@ public class WSCommentHelper {
         webResource = client.resource(BASE_URI).path("comments");
     }
 
+    public <T> T findCommentsByProjectIdWebsite(Class<T> responseType, String id) throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path(java.text.MessageFormat.format("wsproject/{0}", new Object[]{id}));
+        return resource.get(responseType);
+    }
+
     public <T> T findCommentsByTaskIdWebsite(Class<T> responseType, String id) throws UniformInterfaceException {
         WebResource resource = webResource;
         resource = resource.path(java.text.MessageFormat.format("wstask/{0}", new Object[]{id}));
@@ -68,6 +74,10 @@ public class WSCommentHelper {
         WebResource resource = webResource;
         resource = resource.path(java.text.MessageFormat.format("task/{0}", new Object[]{id}));
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+    }
+
+    public <T> T createNewComment(Class<T> responseType, Object requestEntity) throws UniformInterfaceException {
+        return webResource.path("create").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(responseType, requestEntity);
     }
 
     public void create_XML(Object requestEntity) throws UniformInterfaceException {

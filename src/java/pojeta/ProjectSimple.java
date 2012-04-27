@@ -20,7 +20,7 @@ public class ProjectSimple implements Serializable {
         
         private String status;
         
-        private int id;
+        private Integer id;
         
         public ProjectSimple(String name, String size, String type, String status) {
                 this.name = name;
@@ -78,14 +78,14 @@ public class ProjectSimple implements Serializable {
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }
