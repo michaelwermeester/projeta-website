@@ -10,40 +10,58 @@
 
         <ui:composition template="./projetaDefaultTemplate.xhtml">
 
-<!--            <ui:define name="top">
-                top
-            </ui:define>-->
+            <!--            <ui:define name="top">
+                            top
+                        </ui:define>-->
 
-<!--            <ui:define name="left">
-                menu
-            </ui:define>-->
+            <!--            <ui:define name="left">
+                            menu
+                        </ui:define>-->
 
 
             <ui:define name="content">
-                
+
                 <h:form id="form"> 
                     <p:growl id="messages" showDetail="true" />  
-                        <ui:repeat value="#{commentController.commentList}" var="comment">
-                           
-                            <h:outputText value="#{comment.comment}" /> <br />
-                            <h:outputText value="#{comment.userCreated.username}" /> <br />
-                            <h:outputText value="#{comment.userCreated.fullName}" /> <br />
-                        </ui:repeat>
-                    
-                        <p:messages id="sendCommentMessages" showDetail="true" autoUpdate="true"/>  
-                    
-                        <p:inputTextarea id="inputareaComment" rows="9" cols="100" 
-                                         value="#{commentController.comment}" label="Nouveau commentaire" required="true">  
-                                    <f:validateLength minimum="3" />
-                        </p:inputTextarea>
-                        <p:commandButton value="Envoyer" icon="ui-icon-search" action="#{commentController.sendComment}" />
+                    <ui:repeat value="#{commentController.commentList}" var="comment">
+
+                        <h:outputText value="#{comment.comment}" /> <br />
+                        <h:outputText value="#{comment.userCreated.username}" /> <br />
+                        <h:outputText value="#{comment.userCreated.fullName}" /> <br />
+                    </ui:repeat>
+
+                    <ui:repeat value="#{commentController.commentList}" var="comment"> 
+                        <p:panel header="#{comment.userCreated.username}" footer="#{comment.dateCreated}">  
+                            <h:outputText value="#{comment.comment}" />  
+                        </p:panel>  
+                    </ui:repeat>
+
+                    <p:messages id="sendCommentMessages" showDetail="true" autoUpdate="true"/>  
+
+                    <br />
+                    <p:panelGrid>
+                        <p:row>
+                            <p:column><h:outputLabel for="inputareaComment" value="Nouveau commentaire : *" /></p:column>
+                            <p:column>
+                                <p:inputTextarea id="inputareaComment" rows="9" cols="100" 
+                                     value="#{commentController.comment}" label="Nouveau commentaire" required="true">  
+                        <f:validateLength minimum="3" />
+                    </p:inputTextarea>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            
+                        </p:row>
+                    </p:panelGrid>
+                    <br />
+                    <p:commandButton value="Envoyer" icon="ui-icon-search" action="#{commentController.sendComment}" />
                 </h:form>
             </ui:define>
 
 
-<!--            <ui:define name="bottom">
-                bottom
-            </ui:define>-->
+            <!--            <ui:define name="bottom">
+                            bottom
+                        </ui:define>-->
 
         </ui:composition>
 
