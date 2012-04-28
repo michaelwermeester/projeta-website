@@ -6,11 +6,14 @@ package projetaBeans;
 
 import be.luckycode.projetawebservice.Comment;
 import be.luckycode.projetawebservice.CommentDummy;
+import be.luckycode.projetawebservice.Task;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import pojeta.Common;
 import pojeta.ProjectSimple;
 import pojeta.WSCommentHelper;
@@ -29,6 +32,9 @@ public class CommentController {
     private List<Comment> commentList;
     
     private WSCommentHelper commentHelper;
+    
+    private String comment;
+    private Comment commentObject;
     
     // bug = b; task = t; project = p.
     private char commentType; 
@@ -120,4 +126,57 @@ public class CommentController {
         
         return "comments.xhtml?faces-redirect=true";
     }
+    
+    
+    public String sendComment() {
+        
+        this.setCommentObject(new Comment());
+        this.getCommentObject().setComment(this.getComment());
+        
+        // lier le commentaire à la tâche.
+        this.commentObject.setTaskId(new Task(project.getId()));
+        
+        
+        commentHelper = new WSCommentHelper();
+        commentHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+        
+        commentHelper.createNewComment(Comment.class, getCommentObject());
+        
+        //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Sample warn message", "Watch out for PrimeFaces!"));
+        
+        // refresh.
+        this.showTaskComments();
+        this.comment = "";
+        
+        return "comments.xhtml?faces-redirect=true";
+    }
+
+    /**
+     * @return the comment
+     */
+    public String getComment() {
+        return comment;
+    }
+
+    /**
+     * @param comment the comment to set
+     */
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    /**
+     * @return the commentObject
+     */
+    public Comment getCommentObject() {
+        return commentObject;
+    }
+
+    /**
+     * @param commentObject the commentObject to set
+     */
+    public void setCommentObject(Comment commentObject) {
+        this.commentObject = commentObject;
+    }
+    
 }

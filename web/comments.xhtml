@@ -30,8 +30,13 @@
                             <h:outputText value="#{comment.userCreated.fullName}" /> <br />
                         </ui:repeat>
                     
-                        <p:inputTextarea id="inputareaComment" rows="9" cols="100"/> 
-                        <p:commandButton value="Envoyer" icon="ui-icon-search"/>
+                        <p:messages id="sendCommentMessages" showDetail="true" autoUpdate="true"/>  
+                    
+                        <p:inputTextarea id="inputareaComment" rows="9" cols="100" 
+                                         value="#{commentController.comment}" label="Nouveau commentaire" required="true">  
+                                    <f:validateLength minimum="3" />
+                        </p:inputTextarea>
+                        <p:commandButton value="Envoyer" icon="ui-icon-search" action="#{commentController.sendComment}" />
                 </h:form>
             </ui:define>
 
