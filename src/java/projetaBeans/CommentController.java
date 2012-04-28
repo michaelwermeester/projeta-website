@@ -108,6 +108,11 @@ public class CommentController {
         
         this.commentList = tmpCommentDummy.getListComment();
         
+        // line breaks.
+        for (Comment c : commentList) {
+            c.setComment(c.getComment().replace("\n", "<br />"));
+        }
+        
         return "comments.xhtml?faces-redirect=true";
     }
     
@@ -123,6 +128,11 @@ public class CommentController {
         CommentDummy tmpCommentDummy = commentHelper.findCommentsByTaskIdWebsite(CommentDummy.class, project.getId().toString());
         
         this.commentList = tmpCommentDummy.getListComment();
+        
+        // line breaks.
+        for (Comment c : commentList) {
+            c.setComment(c.getComment().replace("\n", "<br />"));
+        }
         
         return "comments.xhtml?faces-redirect=true";
     }

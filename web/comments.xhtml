@@ -32,7 +32,7 @@
 
                     <ui:repeat value="#{commentController.commentList}" var="comment"> 
                         <p:panel header="#{comment.userCreated.username}" footer="#{comment.dateCreated}">  
-                            <h:outputText value="#{comment.comment}" />  
+                            <h:outputText value="#{comment.comment}" escape="false" />  
                         </p:panel>  
                     </ui:repeat>
 
