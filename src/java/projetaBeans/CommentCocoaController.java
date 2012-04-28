@@ -58,6 +58,17 @@ public class CommentCocoaController {
         
             this.commentList = tmpCommentDummy.getListComment();
         }
+        // si le type = "project".
+        else if (requestType.equals("project")) {
+            CommentDummy tmpCommentDummy = wch.findCommentsByProjectIdWebsite(CommentDummy.class, this.requestId);
+        
+            this.commentList = tmpCommentDummy.getListComment();
+        }
+        
+        // line breaks.
+        for (Comment c : commentList) {
+            c.setComment(c.getComment().replace("\n", "<br />"));
+        }
         
         return commentList;
     }
