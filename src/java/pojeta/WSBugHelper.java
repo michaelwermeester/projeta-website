@@ -48,6 +48,12 @@ public class WSBugHelper {
         return resource.accept(javax.ws.rs.core.MediaType.TEXT_PLAIN).get(String.class);
     }
 
+    public <T> T findBugsByProjectIdPOJO(Class<T> responseType, String id) throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path(java.text.MessageFormat.format("wsproject/{0}", new Object[]{id}));
+        return resource.get(responseType);
+    }
+
     public <T> T findAll(Class<T> responseType) throws UniformInterfaceException {
         WebResource resource = webResource;
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);

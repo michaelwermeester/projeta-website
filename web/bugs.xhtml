@@ -24,9 +24,9 @@
                 <h:form id="form"> 
                     
                     <p:growl id="messages" showDetail="true" />  
-
-                    <p:treeTable value="#{projectController.root}" var="projectSimple"  
-                                 selection="#{projectController.selectedNode}" selectionMode="single">  
+                    
+                    <p:treeTable value="#{bugController.root}" var="projectSimple"  
+                                 selection="#{bugController.selectedNode}" selectionMode="single">  
 
                         <f:facet name="header">  
                             Projets 
@@ -48,7 +48,7 @@
 
                         <p:column style="width:100px">  
                             <f:facet name="header">  
-                                Date fin 
+                                Catégorie 
                             </f:facet>  
                             <h:outputText value="#{projectSimple.type}" />
                         </p:column>  
@@ -60,26 +60,19 @@
                         </p:column>  
 
                         <f:facet name="footer">  
-                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{projectDetailController.showProjectDetails()}" >
-                                <f:setPropertyActionListener target="#{projectDetailController.projectSimple}" value="#{projectController.selectedNode.data}" />
+                            
+                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{taskDetailController.showTaskDetails()}" >
+                                <f:setPropertyActionListener target="#{taskDetailController.projectSimple}" value="#{taskController.selectedNode.data}" />
                             </p:commandButton>
-                            <p:commandButton value="Bogues" icon="ui-icon-search" action="#{bugController.showBugs()}" >
-                                <f:setPropertyActionListener target="#{bugController.projectSimple}" value="#{projectController.selectedNode.data}" />
-                            </p:commandButton>
-                            <p:commandButton value="Rapporter un bogue" icon="ui-icon-search" action="#{reportBugController.showBugReportForm()}" >
-                                <f:setPropertyActionListener target="#{reportBugController.project}" value="#{projectController.selectedNode.data}" />
-                            </p:commandButton>
-                            <p:commandButton value="Tâches" icon="ui-icon-search" action="#{taskController.showTasks()}" >
-                                <f:setPropertyActionListener target="#{taskController.projectSimple}" value="#{projectController.selectedNode.data}" />
-                            </p:commandButton>
-                            <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showProjectComments()}" >
-                                <f:setPropertyActionListener target="#{commentController.project}" value="#{projectController.selectedNode.data}" />
+                            <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
+                                <f:setPropertyActionListener target="#{commentController.project}" value="#{taskController.selectedNode.data}" />
                             </p:commandButton>
                             
                             <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
                             <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
                         </f:facet>  
-                    </p:treeTable>  
+                    </p:treeTable>
+                    
                 </h:form>
             </ui:define>
 
