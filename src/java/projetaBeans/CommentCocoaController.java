@@ -23,20 +23,18 @@ import pojeta.WSCommentHelper;
 public class CommentCocoaController {
 
     private List<Comment> commentList;
-    
     private WSCommentHelper wch;
-    
     // ID de du projet, tâche, bug.
     private String requestId;
     // type (project, task, bug).
     private String requestType;
-    
+
     /**
      * Creates a new instance of CommentCocoaController
      */
     public CommentCocoaController() {
-        
-        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         // lire ID de du projet, tâche, bug.
         this.requestId = request.getParameter("id");
         // lire le type (projet, tâche, bug).
@@ -47,29 +45,30 @@ public class CommentCocoaController {
      * @return the commentList
      */
     public List<Comment> getCommentList() {
-        
-        
-        wch = new WSCommentHelper();
-        wch.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
-        
-        // si le type = "task".
-        if (requestType.equals("task")) {
-            CommentDummy tmpCommentDummy = wch.findCommentsByTaskIdWebsite(CommentDummy.class, this.requestId);
-        
-            this.commentList = tmpCommentDummy.getListComment();
+
+        try {
+            wch = new WSCommentHelper();
+            wch.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+
+            // si le type = "task".
+            if (requestType.equals("task")) {
+                CommentDummy tmpCommentDummy = wch.findCommentsByTaskIdWebsite(CommentDummy.class, this.requestId);
+
+                this.commentList = tmpCommentDummy.getListComment();
+            } // si le type = "project".
+            else if (requestType.equals("project")) {
+                CommentDummy tmpCommentDummy = wch.findCommentsByProjectIdWebsite(CommentDummy.class, this.requestId);
+
+                this.commentList = tmpCommentDummy.getListComment();
+            }
+
+            // line breaks.
+            for (Comment c : commentList) {
+                c.setComment(c.getComment().replace("\n", "<br />"));
+            }
+        } catch (Exception e) {
         }
-        // si le type = "project".
-        else if (requestType.equals("project")) {
-            CommentDummy tmpCommentDummy = wch.findCommentsByProjectIdWebsite(CommentDummy.class, this.requestId);
-        
-            this.commentList = tmpCommentDummy.getListComment();
-        }
-        
-        // line breaks.
-        for (Comment c : commentList) {
-            c.setComment(c.getComment().replace("\n", "<br />"));
-        }
-        
+
         return commentList;
     }
 
