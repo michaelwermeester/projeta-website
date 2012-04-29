@@ -17,10 +17,10 @@
 
 
         <div id="top" class="top">
-            <ui:insert name="top">Top</ui:insert>
+            <ui:insert name="top"><img src="./resources/img/Projeta_logo_small.png" /></ui:insert>
             <div style="float:right;">
                 <h:form id="loginForm">
-                    <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="login.xhtml?faces-redirect=true" />
+                    <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="login.xhtml?faces-redirect=true" />&nbsp;&nbsp;&nbsp;&nbsp;
                     <p:commandLink id="registerLink" value="S'inscrire" global="false" rendered="#{! authBackingBean.loggedIn}" action="register.xhtml?faces-redirect=true" />
                     <p:commandLink id="logoutLink" value="Se déconnecter" global="false" rendered="#{authBackingBean.loggedIn}" action="#{authBackingBean.logout}" />
                 </h:form>
