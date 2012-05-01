@@ -16,9 +16,10 @@
 
 #left {
     float: left;
-    background-color: #ece3a5;
+/*    background-color: #ece3a5;*/
+    background-color: #ffffff;
     padding: 5px;
-    width: 150px;
+    width: 160px;
 }
 
 #right {
@@ -35,13 +36,15 @@
 }
 
 .left_content {
-    background-color: #dddddd;
+/*    background-color: #dddddd;*/
+    background-color: #ffffff;
     padding: 5px;
     margin-left: 170px;
 }
 
 .right_content {
-    background-color: #dddddd;
+/*    background-color: #dddddd;*/
+    background-color: #ffffff;
     padding: 5px;
     margin: 0px 170px 0px 170px;
 }
