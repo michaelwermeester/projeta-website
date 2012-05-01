@@ -61,8 +61,8 @@
 
                         <f:facet name="footer">  
                             
-                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{taskDetailController.showTaskDetails()}" >
-                                <f:setPropertyActionListener target="#{taskDetailController.projectSimple}" value="#{taskController.selectedNode.data}" />
+                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{bugDetailController.showBugDetails()}" >
+                                <f:setPropertyActionListener target="#{bugDetailController.projectSimple}" value="#{bugController.selectedNode.data}" />
                             </p:commandButton>
                             <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
                                 <f:setPropertyActionListener target="#{commentController.project}" value="#{taskController.selectedNode.data}" />
