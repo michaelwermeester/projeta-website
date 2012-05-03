@@ -4,10 +4,7 @@
  */
 package projetaBeans;
 
-import be.luckycode.projetawebservice.Comment;
-import be.luckycode.projetawebservice.CommentDummy;
-import be.luckycode.projetawebservice.Progress;
-import be.luckycode.projetawebservice.ProgressDummy;
+import be.luckycode.projetawebservice.*;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -16,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import pojeta.Common;
 import pojeta.WSCommentHelper;
 import pojeta.WSProgressHelper;
+import pojeta.WSStatusHelper;
 
 /**
  *
