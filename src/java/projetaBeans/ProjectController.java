@@ -62,7 +62,7 @@ public class ProjectController implements Serializable {
         for (ProjectSimpleWebSite p : projDummy.getListProject()) {
          
             if (p.getProjectTitle() != null) {
-                DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), "-", "-", "En cours"), root);
+                DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), "-", "-", p.getProjectStatus()), root);
                 
                 treeAddChildProjects(treeNode, p);
             }
@@ -126,7 +126,7 @@ public class ProjectController implements Serializable {
         for (ProjectSimpleWebSite p : project.getChildProject()) {
          
             if (p.getProjectTitle() != null) {
-                DefaultTreeNode defTreeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), "-", "-", "En cours"), treeNode);
+                DefaultTreeNode defTreeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), "-", "-", p.getProjectStatus()), treeNode);
                 
                 treeAddChildProjects(defTreeNode, p);
             }
