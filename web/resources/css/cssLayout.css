@@ -49,6 +49,10 @@
     margin: 0px 170px 0px 170px;
 }
 
+.form_label {
+    vertical-align: top;
+}
+
 #top a:link, #top a:visited {
   color: #14447c;
   font-weight : bold;
@@ -61,4 +65,8 @@
   text-decoration : underline;
 }
 
-
+.projetaTable {
+/*    background-color:#FFFFFF;*/
+/*    border: solid #000 3px;*/
+    width: 100%;
+ }

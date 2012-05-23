@@ -26,7 +26,13 @@
 
 
 
-                    <p:panelGrid id="regForm">
+                    <p:panelGrid id="regForm" styleClass="projetaTable" >
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column colspan="3">Inscription - Créez votre compte</p:column>  
+                            </p:row>
+                        </f:facet> 
+
                         <p:row>
                             <p:column><h:outputLabel for="username" value="Nom d'utilisateur : *" /></p:column>
                             <p:column><p:inputText id="username" label="Nom d'utilisateur" required="true" value="#{registrationBean.username}" validator="#{registrationBean.checkUserIfAvailable}" >
@@ -102,7 +108,7 @@
                                 <p:inputTextarea id="address" rows="5" cols="40" label="Adresse" required="false" value="#{registrationBean.address}"/>
                             </p:column>
                         </p:row>
-                        
+
                         <p:row>
                             <p:column>
                                 <h:outputLabel for="phoneNumber" value="Téléphone :" />
@@ -119,38 +125,47 @@
                                                 </p:row>-->
                     </p:panelGrid> 
 
+<!--<p:row>-->
+<!--    <p:column colspan="3">-->
                     <p:message id="captchaMessage" for="captcha" />
                     <f:view contentType="text/html">
                         <p:captcha label="Captcha" id="captcha" language="fr" />
                     </f:view>
-
+<!--    </p:column>-->
+<!--</p:row>-->
                     <!--                    <p:message id="captchaMessage" for="captcha" />-->
 
-                    <p:panelGrid>
-<!--                        <p:row>
-                            <p:column>
-                                <p:message id="createUserMessage" for="Register" />
-<h:messages id="messages" errorClass="errorMessage" infoClass="infoMessage"
-                        warnClass="warnMessage" globalOnly="true"></h:messages>
-                            </p:column>
-                        </p:row>-->
-                  
-                        <p:row>
-                            <p:column>
-                                <p:commandButton update="regForm,captchaMessage" value="Créer le compte" action="#{registrationBean.registerUser}" id="Register" oncomplete="Recaptcha.reload()" />
-                            </p:column>
-                            <p:column>
-                                <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
-                                    <f:facet name="start">  
-                                        <h:graphicImage value="../resources/img/ajaxloading.gif" />  
-                                    </f:facet>  
+                    <p:panelGrid styleClass="grid" style="width: 100%">
+                        <!--                        <p:row>
+                                                    <p:column>
+                                                        <p:message id="createUserMessage" for="Register" />
+                        <h:messages id="messages" errorClass="errorMessage" infoClass="infoMessage"
+                                                warnClass="warnMessage" globalOnly="true"></h:messages>
+                                                    </p:column>
+                                                </p:row>-->
 
-                                    <f:facet name="complete">  
-                                        <h:outputText value="" />  
-                                    </f:facet>  
-                                </p:ajaxStatus>
-                            </p:column>
-                        </p:row> 
+                        <p:row>
+                            <p:column colspan="3" style="width: 100%"><h:outputText value="* champs obligatoires" /></p:column>        
+                        </p:row>
+                        
+                        <f:facet name="footer">
+                            <p:row>
+                                <p:column>
+                                    <p:commandButton update="regForm,captchaMessage" value="Créer le compte" action="#{registrationBean.registerUser}" id="Register" oncomplete="Recaptcha.reload()" />
+                                </p:column>
+                                <p:column>
+                                    <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+                                        <f:facet name="start">  
+                                            <h:graphicImage value="../resources/img/ajaxloading.gif" />  
+                                        </f:facet>  
+
+                                        <f:facet name="complete">  
+                                            <h:outputText value="" />  
+                                        </f:facet>  
+                                    </p:ajaxStatus>
+                                </p:column>
+                            </p:row> 
+                        </f:facet>
                     </p:panelGrid>
                 </h:form>
             </ui:define>
