@@ -44,17 +44,17 @@
                         </p:row>
 
                         <p:row>
-                            <p:column>
+                            <p:column style="border-style: none;">
                                 <h:outputLabel for="pwd1" value="Mot de passe 1: *" />
                             </p:column>
 
-                            <p:column>
+                            <p:column style="border-style: none;">
                                 <p:password id="pwd1" value="#{registrationBean.password}" match="pwd2" label="Mot de passe 1" required="true">
                                     <f:validateLength minimum="3" maximum="24" />
                                 </p:password>
                             </p:column>
 
-                            <p:column>
+                            <p:column style="border-style: none;">
                                 <p:message id="pwd1Message" for="pwd1" /> 
                             </p:column>
                         </p:row>
@@ -77,7 +77,7 @@
                             <p:column>
                                 <h:outputLabel for="firstName" value="Prénom :" />
                             </p:column>
-                            <p:column>
+                            <p:column colspan="2">
                                 <p:inputText id="firstName" label="Prénom" required="false" value="#{registrationBean.firstName}"/>
                             </p:column>
                         </p:row>
@@ -86,7 +86,7 @@
                             <p:column>
                                 <h:outputLabel for="lastName" value="Nom :" />
                             </p:column>
-                            <p:column>
+                            <p:column colspan="2">
                                 <p:inputText id="lastName" label="Nom" required="false" value="#{registrationBean.lastName}"/>
                             </p:column>
                         </p:row>
@@ -95,7 +95,7 @@
                             <p:column>
                                 <h:outputLabel for="email" value="E-mail :" />
                             </p:column>
-                            <p:column>
+                            <p:column colspan="2">
                                 <p:inputText id="email" value="#{registrationBean.emailAddress}" label="Email" />
                             </p:column>
                         </p:row>
@@ -113,29 +113,35 @@
                             <p:column>
                                 <h:outputLabel for="phoneNumber" value="Téléphone :" />
                             </p:column>
-                            <p:column>
+                            <p:column colspan="2">
                                 <p:inputText id="phoneNumber" value="#{registrationBean.phoneNumber}" label="Telephone" />
                             </p:column>
                         </p:row>
-
                         <!--                        <p:row>  
                                                     <p:column colspan="2">
                                                         <p:message id="captchaMessage" for="captcha" />
                                                     </p:column>  
                                                 </p:row>-->
-                    </p:panelGrid> 
+                        <!--                    </p:panelGrid> -->
 
-<!--<p:row>-->
-<!--    <p:column colspan="3">-->
-                    <p:message id="captchaMessage" for="captcha" />
-                    <f:view contentType="text/html">
-                        <p:captcha label="Captcha" id="captcha" language="fr" />
-                    </f:view>
-<!--    </p:column>-->
-<!--</p:row>-->
-                    <!--                    <p:message id="captchaMessage" for="captcha" />-->
+                        <p:row>
+                            <p:column colspan="3" style="width: 100%"><h:outputText value="* champs obligatoires" /></p:column>        
+                        </p:row>
 
-                    <p:panelGrid styleClass="grid" style="width: 100%">
+                        <p:row>
+                            <p:column>
+                                
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:message id="captchaMessage" for="captcha" />
+                                <f:view contentType="text/html">
+                                    <p:captcha label="Captcha" id="captcha" language="fr" />
+                                </f:view>
+                            </p:column>
+                        </p:row>
+                        <!--                    <p:message id="captchaMessage" for="captcha" />-->
+
+                        <!--                    <p:panelGrid styleClass="grid" style="width: 100%">-->
                         <!--                        <p:row>
                                                     <p:column>
                                                         <p:message id="createUserMessage" for="Register" />
@@ -144,14 +150,12 @@
                                                     </p:column>
                                                 </p:row>-->
 
-                        <p:row>
-                            <p:column colspan="3" style="width: 100%"><h:outputText value="* champs obligatoires" /></p:column>        
-                        </p:row>
-                        
+
+
                         <f:facet name="footer">
                             <p:row>
                                 <p:column>
-                                    <p:commandButton update="regForm,captchaMessage" value="Créer le compte" action="#{registrationBean.registerUser}" id="Register" oncomplete="Recaptcha.reload()" />
+                                    <p:commandButton update="username,usernameMessage,pwd1,pwd1Message,pwd2,pwd2Message,firstName,lastName,email,address,phoneNumber,captchaMessage" value="Créer le compte" action="#{registrationBean.registerUser}" id="Register" oncomplete="Recaptcha.reload()" />
                                 </p:column>
                                 <p:column>
                                     <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  

@@ -69,4 +69,13 @@
 /*    background-color:#FFFFFF;*/
 /*    border: solid #000 3px;*/
     width: 100%;
+    border: solid 1px #A8A8A8;
+ }
+
+.projetaTable td {
+     border: none #A8A8A8;
+ }
+ 
+ .projetaTable tr {
+     border: none #A8A8A8;
  }
