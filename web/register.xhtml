@@ -157,8 +157,9 @@
                                 <p:column>
                                     <p:commandButton update="username,usernameMessage,pwd1,pwd1Message,pwd2,pwd2Message,firstName,lastName,email,address,phoneNumber,captchaMessage" value="Créer le compte" action="#{registrationBean.registerUser}" id="Register" oncomplete="Recaptcha.reload()" />
                                 </p:column>
-                                <p:column>
-                                    <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+                                
+                                <p:column colspan="2">
+                                    <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel" >  
                                         <f:facet name="start">  
                                             <h:graphicImage value="../resources/img/ajaxloading.gif" />  
                                         </f:facet>  
@@ -166,7 +167,7 @@
                                         <f:facet name="complete">  
                                             <h:outputText value="" />  
                                         </f:facet>  
-                                    </p:ajaxStatus>
+                                    </p:ajaxStatus>&nbsp;&nbsp;&nbsp;
                                 </p:column>
                             </p:row> 
                         </f:facet>
