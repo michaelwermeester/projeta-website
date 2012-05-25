@@ -74,8 +74,30 @@
 
 .projetaTable td {
      border: none #A8A8A8;
+/*     display: table-cell;*/
+/*     float: none;*/
  }
  
- .projetaTable tr {
+.projetaTable tr {
      border: none #A8A8A8;
  }
+ 
+ 
+.projetaDetails {
+/*    background-color:#FFFFFF;*/
+/*    border: solid #000 3px;*/
+    width: 100%;
+    border: solid 1px #A8A8A8;
+ }
+
+.projetaDetails td {
+/*     border: solid #A8A8A8;*/
+/*     display: table-cell;*/
+/*     float: none;*/
+ }
+ 
+.projetaDetails tr {
+/*     border: solid #A8A8A8;*/
+ }
+ 
+ 

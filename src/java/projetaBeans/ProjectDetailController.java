@@ -25,37 +25,33 @@ public class ProjectDetailController {
      */
     //@ManagedProperty("#{param.strProjectId}")
     private String strProjectId;
-    
     private Integer projectId;
-    
     private ProjectSimple projectSimple;
-    
     private Project project;
-    
     private WSProjectHelper wph;
-    
+
     public ProjectDetailController() {
     }
-    
+
     public String showProjectId(int id) {
         //this.projectId = Integer.parseInt(id);
         //this.projectId = Integer.parseInt(strProjectId);
         this.projectId = id;
-        
+
         return "projectDetail.xhtml";
     }
-    
+
     public String showProjectDetails() {
-        
+
         //this.projectId = Integer.parseInt(getStrProjectId());
-        
+
         this.projectId = projectSimple.getId();
-        
+
         wph = new WSProjectHelper();
         wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
-        
+
         this.project = wph.find(Project.class, this.projectId.toString());
-        
+
         return "projectDetail.xhtml?faces-redirect=true";
     }
 
@@ -107,6 +103,43 @@ public class ProjectDetailController {
     public void setProject(Project project) {
         this.project = project;
     }
-    
-    
+
+    // retourne 'Oui' si le projet est terminé
+    // et 'Non' si le projet est en cours. 
+    public String projectCompletedString() {
+
+        if (project.getCompleted() == null || project.getCompleted() == false) {
+            return "Non";
+        } else {
+            return "Oui";
+        }
+    }
+
+    // retourne 'Oui' s'il s'agit d'un projet public
+    // et 'Non' pour un projet non-public.
+    public String projectPublicString() {
+
+        if (project.getFlagPublic() == null || project.getFlagPublic() == false) {
+            return "Non";
+        } else {
+            return "Oui";
+        }
+    }
+
+    public String projectResponsableString() {
+
+        String responsable = "";
+
+        if (project.getUserAssigned() != null) {
+
+            if (project.getUserAssigned().getFullName() != null) {
+                responsable += project.getUserAssigned().getFullName() + " ";
+            }
+            if (project.getUserAssigned().getUsername() != null) {
+                responsable += "(" + project.getUserAssigned().getUsername() + ")";
+            }
+        }
+
+        return responsable;
+    }
 }
