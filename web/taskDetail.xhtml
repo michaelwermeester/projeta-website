@@ -24,10 +24,148 @@
                 <h:form id="form"> 
                     <p:growl id="messages" showDetail="true" />  
 
-                    <h:outputText value="#{taskDetailController.taskId}" />
-                    <h:outputText value="#{taskDetailController.task.taskTitle}" />
-                    <h:outputText value="#{taskDetailController.task.taskDescription}" />
-                    <h:outputText value="#{taskDetailController.userCreated}" />
+                    <p:panelGrid id="taskDetails" styleClass="taskDetails">
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column colspan="4"> 
+                                    <h:outputText value="Détails de la tâche : #{taskDetailController.task.taskTitle}" />
+                                </p:column>  
+                            </p:row>
+                        </f:facet> 
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="titre" value="Titre : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3" style="width: 90%;">
+                                #{taskDetailController.task.taskTitle}
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="description" value="Description : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{taskDetailController.task.taskDescription}
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="startDate" value="Date de début :" style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                <h:outputText value="#{taskDetailController.task.startDate}" >
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="endDate" value="Date de fin :" style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                <h:outputText value="#{taskDetailController.task.endDate}" >
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </p:column>        
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="status" value="État : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{taskDetailController.projectSimple.status}
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="startDateReal" value="Date de début réel :" style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                <h:outputText value="#{taskDetailController.task.startDateReal}" >
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="endDateReal" value="Date de fin réel :" style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                <h:outputText value="#{taskDetailController.task.endDateReal}" >
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </p:column>        
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="userAssigned" value="Responsable : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{taskDetailController.taskResponsableString()}
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="priority" value="Priorité : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{taskDetailController.task.priority}
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="completed" value="Projet Terminé ? " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{taskDetailController.taskCompletedString()}
+                            </p:column>
+                        </p:row>
+
+                        <f:facet name="footer">
+                            <p:row>  
+                                <p:column colspan="4"> 
+                                    <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
+
+                                    <p:commandButton value="Bogues" icon="ui-icon-search" action="#{bugController.showBugs()}" >
+                                        <f:setPropertyActionListener target="#{bugController.projectSimple}" value="#{taskDetailController.projectSimple}" />
+                                    </p:commandButton>
+                                    <p:commandButton value="Rapporter un bogue" icon="ui-icon-search" action="#{reportBugController.showBugReportForm()}" >
+                                        <f:setPropertyActionListener target="#{reportBugController.project}" value="#{taskDetailController.projectSimple}" />
+                                    </p:commandButton>
+                                    <p:commandButton value="Tâches" icon="ui-icon-search" action="#{taskController.showTasks()}" >
+                                        <f:setPropertyActionListener target="#{taskController.projectSimple}" value="#{taskDetailController.projectSimple}" />
+                                    </p:commandButton>
+                                    <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showProjectComments()}" >
+                                        <f:setPropertyActionListener target="#{commentController.project}" value="#{taskDetailController.projectSimple}" />
+                                    </p:commandButton>
+                                </p:column> 
+                            </p:row>
+                        </f:facet> 
+
+
+                    </p:panelGrid>
                 </h:form>
             </ui:define>
 

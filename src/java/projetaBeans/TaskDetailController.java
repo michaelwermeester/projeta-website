@@ -130,4 +130,32 @@ public class TaskDetailController {
             return "";
         }
     }
+    
+    // retourne 'Oui' si le projet est terminé
+    // et 'Non' si le projet est en cours. 
+    public String taskCompletedString() {
+
+        if (task.getCompleted() == null || task.getCompleted() == false) {
+            return "Non";
+        } else {
+            return "Oui";
+        }
+    }
+
+    public String taskResponsableString() {
+
+        String responsable = "";
+
+        if (task.getUserAssigned() != null) {
+
+            if (task.getUserAssigned().getFullName() != null) {
+                responsable += task.getUserAssigned().getFullName() + " ";
+            }
+            if (task.getUserAssigned().getUsername() != null) {
+                responsable += "(" + task.getUserAssigned().getUsername() + ")";
+            }
+        }
+
+        return responsable;
+    }
 }
