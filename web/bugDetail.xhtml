@@ -24,8 +24,116 @@
                 <h:form id="form"> 
                     <p:growl id="messages" showDetail="true" />  
 
-                    <h:outputText value="#{bugDetailController.bugId}" />
-                    <h:outputText value="#{bugDetailController.bug.title}" />
+                    <p:panelGrid id="taskDetails" styleClass="bugDetails">
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column colspan="4"> 
+                                    <h:outputText value="Détails du bogue : #{bugDetailController.bug.title}" />
+                                </p:column>  
+                            </p:row>
+                        </f:facet> 
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="titre" value="Titre : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3" style="width: 90%;">
+                                #{bugDetailController.bug.title}
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="description" value="Détails : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{bugDetailController.bug.details}
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="dateReported" value="Rapporté le :" style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                <h:outputText value="#{bugDetailController.bug.dateReported}" >
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:outputText> par #{bugDetailController.bugReportedByString()}
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="categorie" value="Catégorie : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{bugDetailController.projectSimple.type}
+                            </p:column>
+                        </p:row>
+                        
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="status" value="État : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{bugDetailController.projectSimple.status}
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="userAssigned" value="Responsable : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{bugDetailController.bugResponsableString()}
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="priority" value="Priorité : " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{bugDetailController.bug.priority}
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column style="white-space: nowrap; text-align: right;">
+                                <h:outputLabel for="fixed" value="Bogue corrigé ? " style="font-weight: bold;" />
+                            </p:column>
+
+                            <p:column colspan="3">
+                                #{bugDetailController.bugFixedString()}
+                            </p:column>
+                        </p:row>
+
+                        <f:facet name="footer">
+                            <p:row>  
+                                <p:column style="border: none;">
+                                    <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
+                                </p:column>
+                                <p:column colspan="3" style="text-align: right; border: none;">  
+                                    <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
+
+                                    <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showProjectComments()}" >
+                                        <f:setPropertyActionListener target="#{commentController.project}" value="#{taskDetailController.projectSimple}" />
+                                    </p:commandButton>
+                                </p:column> 
+                            </p:row>
+                        </f:facet> 
+
+
+                    </p:panelGrid>
                 </h:form>
             </ui:define>
 

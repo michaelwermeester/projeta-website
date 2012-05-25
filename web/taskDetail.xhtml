@@ -135,7 +135,7 @@
 
                         <p:row>
                             <p:column style="white-space: nowrap; text-align: right;">
-                                <h:outputLabel for="completed" value="Projet Terminé ? " style="font-weight: bold;" />
+                                <h:outputLabel for="completed" value="Tâche achevée ? " style="font-weight: bold;" />
                             </p:column>
 
                             <p:column colspan="3">
@@ -145,18 +145,10 @@
 
                         <f:facet name="footer">
                             <p:row>  
-                                <p:column colspan="4"> 
+                                <p:column style="border: none;">
                                     <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
-
-                                    <p:commandButton value="Bogues" icon="ui-icon-search" action="#{bugController.showBugs()}" >
-                                        <f:setPropertyActionListener target="#{bugController.projectSimple}" value="#{taskDetailController.projectSimple}" />
-                                    </p:commandButton>
-                                    <p:commandButton value="Rapporter un bogue" icon="ui-icon-search" action="#{reportBugController.showBugReportForm()}" >
-                                        <f:setPropertyActionListener target="#{reportBugController.project}" value="#{taskDetailController.projectSimple}" />
-                                    </p:commandButton>
-                                    <p:commandButton value="Tâches" icon="ui-icon-search" action="#{taskController.showTasks()}" >
-                                        <f:setPropertyActionListener target="#{taskController.projectSimple}" value="#{taskDetailController.projectSimple}" />
-                                    </p:commandButton>
+                                </p:column>
+                                <p:column colspan="3" style="text-align: right; border: none;"> 
                                     <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showProjectComments()}" >
                                         <f:setPropertyActionListener target="#{commentController.project}" value="#{taskDetailController.projectSimple}" />
                                     </p:commandButton>

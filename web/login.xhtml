@@ -15,40 +15,60 @@
             <!--        <h:form><p:commandButton value="Hello from PrimeFaces" onclick="dlg1.show();" type="button" /><p:dialog header="PrimeFaces Dialog" widgetVar="dlg1" width="500">For more information visit <a href="http://primefaces.org">http://primefaces.org</a>.</p:dialog></h:form>-->
 
 
-                    
+
 
             <ui:define name="content">
-<!--                <p:panel header="Login From">
-                        <form method="post" action="j_security_check">
-                            Username: <input type="text" name="j_username" />
-                            Password: <input type="password" name="j_password" />
-                            <br />
-                            <input type="submit" value="Login" />
-            
-                        </form> 
-                    </p:panel>-->
-                
-                
+                <!--                <p:panel header="Login From">
+                                        <form method="post" action="j_security_check">
+                                            Username: <input type="text" name="j_username" />
+                                            Password: <input type="password" name="j_password" />
+                                            <br />
+                                            <input type="submit" value="Login" />
+                            
+                                        </form> 
+                                    </p:panel>-->
+
+
                 <h:form id="loginSiteForm" rendered="#{! authBackingBean.loggedIn}">  
 
                     <p:messages globalOnly="true" autoUpdate="true" />
 
-                    <p:panelGrid columns="2">  
+                    <p:panelGrid>  
                         <f:facet name="header">  
-                            Login 
+                            <p:row>  
+                                <p:column colspan="2"> 
+                                    Login 
+                                </p:column>
+                            </p:row>
                         </f:facet>  
-                        <h:outputLabel for="username" value="Nom d'utilisateur :" />  
-                        <p:inputText value="#{authBackingBean.username}"   
-                                     id="username" label="username" />  
+                        <p:row>  
+                            <p:column> 
+                                <h:outputLabel for="username" value="Nom d'utilisateur :" />  
+                            </p:column>
+                            <p:column> 
+                                <p:inputText value="#{authBackingBean.username}"   
+                                             id="username" label="username" /> 
+                            </p:column>
+                        </p:row>
 
-                        <h:outputLabel for="password" value="Mot de passe :" />  
-                        <p:password value="#{authBackingBean.password}"   
-                                    id="password" label="password" feedback="false" />  
+                        <p:row>  
+                            <p:column> 
+                                <h:outputLabel for="password" value="Mot de passe :" /> 
+                            </p:column>
+                            <p:column> 
+                                <p:password value="#{authBackingBean.password}"   
+                                            id="password" label="password" feedback="false" />  
+                            </p:column>
+                        </p:row>
 
-                        <f:facet name="footer">  
-                            <p:commandButton id="loginButton" value="Se connecter"    
-                                             action="#{authBackingBean.login}"   
-                                             />  
+                        <f:facet name="footer">
+                            <p:row>  
+                                <p:column colspan="2" style="text-align: right;"> 
+                                    <p:commandButton id="loginButton" value="Se connecter"    
+                                                     action="#{authBackingBean.login}"   
+                                                     />  
+                                </p:column>
+                            </p:row>
                         </f:facet>  
                     </p:panelGrid>  
 

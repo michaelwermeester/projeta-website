@@ -130,4 +130,49 @@ public class BugDetailController {
     public void setBugHelper(WSBugHelper bugHelper) {
         this.bugHelper = bugHelper;
     }
+    
+    // retourne 'Oui' si le projet est terminé
+    // et 'Non' si le projet est en cours. 
+    public String bugFixedString() {
+
+        if (bug.getFixed() == null || bug.getFixed() == false) {
+            return "Non";
+        } else {
+            return "Oui";
+        }
+    }
+
+    public String bugResponsableString() {
+
+        String responsable = "";
+
+        if (bug.getUserAssigned() != null) {
+
+            if (bug.getUserAssigned().getFullName() != null) {
+                responsable += bug.getUserAssigned().getFullName() + " ";
+            }
+            if (bug.getUserAssigned().getUsername() != null) {
+                responsable += "(" + bug.getUserAssigned().getUsername() + ")";
+            }
+        }
+
+        return responsable;
+    }
+    
+    public String bugReportedByString() {
+
+        String userReported = "";
+
+        if (bug.getUserReported() != null) {
+
+            if (bug.getUserReported().getFullName() != null) {
+                userReported += bug.getUserReported().getFullName() + " ";
+            }
+            if (bug.getUserReported().getUsername() != null) {
+                userReported += "(" + bug.getUserReported().getUsername() + ")";
+            }
+        }
+
+        return userReported;
+    }
 }

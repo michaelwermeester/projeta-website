@@ -10,26 +10,26 @@
 
         <ui:composition template="./projetaDefaultTemplate.xhtml">
 
-<!--            <ui:define name="top">
-                top
-            </ui:define>-->
+            <!--            <ui:define name="top">
+                            top
+                        </ui:define>-->
 
-<!--            <ui:define name="left">
-                menu
-            </ui:define>-->
+            <!--            <ui:define name="left">
+                            menu
+                        </ui:define>-->
 
 
             <ui:define name="content">
-                
+
                 <h:form id="form"> 
-                    
+
                     <p:growl id="messages" showDetail="true" />  
-                    
+
                     <p:treeTable value="#{bugController.root}" var="projectSimple"  
                                  selection="#{bugController.selectedNode}" selectionMode="single">  
 
-                        <f:facet name="header">  
-                            Projets 
+                        <f:facet name="header"> 
+                            Bogues - #{bugController.projectSimple.name} 
                         </f:facet>  
 
                         <p:column style="width:40px">  
@@ -59,27 +59,33 @@
                             <h:outputText value="#{projectSimple.status}" />
                         </p:column>  
 
-                        <f:facet name="footer">  
-                            <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
-                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{bugDetailController.showBugDetails()}" >
-                                <f:setPropertyActionListener target="#{bugDetailController.projectSimple}" value="#{bugController.selectedNode.data}" />
-                            </p:commandButton>
-                            <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
-                                <f:setPropertyActionListener target="#{commentController.project}" value="#{taskController.selectedNode.data}" />
-                            </p:commandButton>
-                            
-                            <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
-                            <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
+                        <f:facet name="footer"> 
+                           
+                                <p:column style="border: none;">
+                                    <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
+                                </p:column>
+                                <p:column colspan="3" style="text-align: right; border: none;"> 
+                                    <p:commandButton value="Détails" icon="ui-icon-search" action="#{bugDetailController.showBugDetails()}" >
+                                        <f:setPropertyActionListener target="#{bugDetailController.projectSimple}" value="#{bugController.selectedNode.data}" />
+                                    </p:commandButton>
+                                    <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
+                                        <f:setPropertyActionListener target="#{commentController.project}" value="#{taskController.selectedNode.data}" />
+                                    </p:commandButton>
+
+                                    <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
+                                    <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
+                                </p:column>
+                           
                         </f:facet>  
                     </p:treeTable>
-                    
+
                 </h:form>
             </ui:define>
 
 
-<!--            <ui:define name="bottom">
-                bottom
-            </ui:define>-->
+            <!--            <ui:define name="bottom">
+                            bottom
+                        </ui:define>-->
 
         </ui:composition>
 
