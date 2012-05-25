@@ -123,8 +123,6 @@
                                     <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
                                 </p:column>
                                 <p:column colspan="3" style="text-align: right; border: none;">  
-                                    <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
-
                                     <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showProjectComments()}" >
                                         <f:setPropertyActionListener target="#{commentController.project}" value="#{taskDetailController.projectSimple}" />
                                     </p:commandButton>
