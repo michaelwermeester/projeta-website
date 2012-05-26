@@ -26,12 +26,11 @@ import javax.net.ssl.SSLContext;
 public class WSProjectHelper {
     private WebResource webResource;
     private Client client;
-    //private static final String BASE_URI = "https://luckycode.be:8181/projeta-webservice/resources";
-    private static final String BASE_URI = "http://localhost:8080/projeta-webservice/resources";
+    private static final String BASE_URI = "https://luckycode.be:8181/projeta-webservice/resources";
 
     public WSProjectHelper() {
         com.sun.jersey.api.client.config.ClientConfig config = new com.sun.jersey.api.client.config.DefaultClientConfig(); // SSL configuration
-        //config.getProperties().put(com.sun.jersey.client.urlconnection.HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, new com.sun.jersey.client.urlconnection.HTTPSProperties(getHostnameVerifier(), getSSLContext()));
+        config.getProperties().put(com.sun.jersey.client.urlconnection.HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, new com.sun.jersey.client.urlconnection.HTTPSProperties(getHostnameVerifier(), getSSLContext()));
         client = Client.create(config);
         webResource = client.resource(BASE_URI).path("projects");
     }
@@ -50,8 +49,9 @@ public class WSProjectHelper {
         return resource.accept(javax.ws.rs.core.MediaType.TEXT_PLAIN).get(String.class);
     }
 
-    public String findAll4() throws UniformInterfaceException {
+    public String findAllPublicProjects() throws UniformInterfaceException {
         WebResource resource = webResource;
+        resource = resource.path("public");
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
@@ -59,8 +59,23 @@ public class WSProjectHelper {
         webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(requestEntity);
     }
 
+    public <T> T findPublicProjectsPOJO(Class<T> responseType) throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path("wsprojectspublic");
+        return resource.get(responseType);
+    }
+
     public String updateProject(Object requestEntity) throws UniformInterfaceException {
         return webResource.path("update").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(String.class, requestEntity);
+    }
+
+    public void deleteProject() throws UniformInterfaceException {
+        webResource.path("delete").post();
+    }
+
+    public String findAllProjects() throws UniformInterfaceException {
+        WebResource resource = webResource;
+        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
     public <T> T findRange(Class<T> responseType, String from, String to) throws UniformInterfaceException {
@@ -69,20 +84,16 @@ public class WSProjectHelper {
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T find(Class<T> responseType, String id) throws UniformInterfaceException {
-        WebResource resource = webResource;
-        resource = resource.path(java.text.MessageFormat.format("{0}", new Object[]{id}));
-        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public void deleteProject() throws UniformInterfaceException {
-        webResource.path("delete").post();
-    }
-
     public <T> T findProjectsPOJO(Class<T> responseType) throws UniformInterfaceException {
         WebResource resource = webResource;
         resource = resource.path("wsprojects");
         return resource.get(responseType);
+    }
+
+    public <T> T find(Class<T> responseType, String id) throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path(java.text.MessageFormat.format("{0}", new Object[]{id}));
+        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void deleteProjectById(String id) throws UniformInterfaceException {

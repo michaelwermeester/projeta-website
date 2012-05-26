@@ -32,14 +32,14 @@ import pojeta.WSProjectHelper;
  */
 @ManagedBean
 @SessionScoped
-public class ProjectController implements Serializable {
+public class PublicProjectController implements Serializable {
 
     private TreeNode root;
     private TreeNode selectedNode;
     private TreeNode[] selectedNodes;
     WSProjectHelper wph;
 
-    public ProjectController() {
+    public PublicProjectController() {
 
         wph = new WSProjectHelper();
         wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
@@ -48,7 +48,7 @@ public class ProjectController implements Serializable {
         root = new DefaultTreeNode("root", null);
 
 
-        ProjectDummy projDummy = wph.findProjectsPOJO(ProjectDummy.class);
+        ProjectDummy projDummy = wph.findPublicProjectsPOJO(ProjectDummy.class);
         //List<Project> listProj = wph.findProjectsPOJO(List.class);
 
         // works !

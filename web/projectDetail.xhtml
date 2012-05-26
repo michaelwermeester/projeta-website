@@ -152,7 +152,7 @@
                                     <p:commandButton value="Bogues" icon="ui-icon-search" action="#{bugController.showBugs()}" >
                                         <f:setPropertyActionListener target="#{bugController.projectSimple}" value="#{projectDetailController.projectSimple}" />
                                     </p:commandButton>
-                                    <p:commandButton value="Rapporter un bogue" icon="ui-icon-search" action="#{reportBugController.showBugReportForm()}" >
+                                    <p:commandButton value="Rapporter un bogue" icon="ui-icon-document" action="#{reportBugController.showBugReportForm()}" >
                                         <f:setPropertyActionListener target="#{reportBugController.project}" value="#{projectDetailController.projectSimple}" />
                                     </p:commandButton>
                                     <p:commandButton value="Tâches" icon="ui-icon-search" action="#{taskController.showTasks()}" >

@@ -60,22 +60,25 @@
                         </p:column>  
 
                         <f:facet name="footer"> 
-                           
-                                <p:column style="border: none;">
-                                    <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
-                                </p:column>
-                                <p:column colspan="3" style="text-align: right; border: none;"> 
-                                    <p:commandButton value="Détails" icon="ui-icon-search" action="#{bugDetailController.showBugDetails()}" >
-                                        <f:setPropertyActionListener target="#{bugDetailController.projectSimple}" value="#{bugController.selectedNode.data}" />
-                                    </p:commandButton>
-                                    <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
-                                        <f:setPropertyActionListener target="#{commentController.project}" value="#{taskController.selectedNode.data}" />
-                                    </p:commandButton>
 
-                                    <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
-                                    <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
-                                </p:column>
-                           
+                            <p:column style="border: none;">
+                                <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
+                            </p:column>
+                            <p:column colspan="3" style="text-align: right; border: none;"> 
+                                <p:commandButton value="Détails" icon="ui-icon-search" action="#{bugDetailController.showBugDetails()}" >
+                                    <f:setPropertyActionListener target="#{bugDetailController.projectSimple}" value="#{bugController.selectedNode.data}" />
+                                </p:commandButton>
+                                <p:commandButton value="Rapporter un bogue" icon="ui-icon-document" action="#{reportBugController.showBugReportForm()}" >
+                                    <f:setPropertyActionListener target="#{reportBugController.project}" value="#{bugController.projectSimple}" />
+                                </p:commandButton>
+                                <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
+                                    <f:setPropertyActionListener target="#{commentController.project}" value="#{taskController.selectedNode.data}" />
+                                </p:commandButton>
+
+                                <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
+                                <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
+                            </p:column>
+
                         </f:facet>  
                     </p:treeTable>
 
