@@ -10,59 +10,71 @@
 
         <ui:composition template="./projetaDefaultTemplate.xhtml">
 
-            <!--            <ui:define name="top">
-                            top
-                        </ui:define>-->
-
-            <!--            <ui:define name="left">
-                            menu
-                        </ui:define>-->
 
 
             <ui:define name="content">
 
                 <h:form id="form"> 
                     <p:growl id="messages" showDetail="true" />  
-                    <ui:repeat value="#{commentController.commentList}" var="comment">
+                    
+                     <p:panelGrid id="commentHeaderPanelGrid" styleClass="projetaDetails">
 
-                        <h:outputText value="#{comment.comment}" /> <br />
-                        <h:outputText value="#{comment.userCreated.username}" /> <br />
-                        <h:outputText value="#{comment.userCreated.fullName}" /> <br />
-                    </ui:repeat>
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column> 
+                                    <h:outputText value="Commentaires : #{commentController.project.name}" />
+                                </p:column>  
+                            </p:row>
+                        </f:facet> 
+                     </p:panelGrid>
+                    <br />
+                    
 
                     <ui:repeat value="#{commentController.commentList}" var="comment"> 
                         <p:panel header="#{comment.userCreated.username}" footer="#{comment.dateCreated}">  
                             <h:outputText value="#{comment.comment}" escape="false" />  
                         </p:panel>  
+                        <br />
                     </ui:repeat>
+                     
 
                     <p:messages id="sendCommentMessages" showDetail="true" autoUpdate="true"/>  
 
                     <br />
-                    <p:panelGrid>
+                    <p:panelGrid id="sendComment" styleClass="projetaDetails">
+
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column colspan="2"> 
+                                    <h:outputText value="Nouveau commentaire : #{commentController.project.name}" />
+                                </p:column>  
+                            </p:row>
+                        </f:facet> 
+                        
                         <p:row>
-                            <p:column><h:outputLabel for="inputareaComment" value="Nouveau commentaire : *" /></p:column>
+                            <p:column style="vertical-align: top; white-space: nowrap;"><h:outputLabel for="inputareaComment" value="Nouveau commentaire : *" style="vertical-align: top; white-space: nowrap;" /></p:column>
                             <p:column>
                                 <p:inputTextarea id="inputareaComment" rows="9" cols="100" 
-                                     value="#{commentController.comment}" label="Nouveau commentaire" required="true">  
-                        <f:validateLength minimum="3" />
-                    </p:inputTextarea>
+                                                 value="#{commentController.comment}" label="Nouveau commentaire" required="true">  
+                                    <f:validateLength minimum="3" />
+                                </p:inputTextarea>
                             </p:column>
                         </p:row>
-                        <p:row>
-                            
-                        </p:row>
+                        
+                        <f:facet name="footer">
+                            <p:row>  
+                                <p:column style="border: none;">
+                                    <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
+                                </p:column>
+                                <p:column style="text-align: right; border: none;">  
+                                    <p:commandButton value="Envoyer" icon="ui-icon-check" action="#{commentController.sendComment}" />
+                                </p:column> 
+                            </p:row>
+                        </f:facet>
                     </p:panelGrid>
-                    <br />
-                    <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
-                    <p:commandButton value="Envoyer" icon="ui-icon-search" action="#{commentController.sendComment}" />
                 </h:form>
             </ui:define>
 
-
-            <!--            <ui:define name="bottom">
-                            bottom
-                        </ui:define>-->
 
         </ui:composition>
 
