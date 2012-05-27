@@ -14,9 +14,24 @@
     <h:body style="background-color: #ededed;">
         <h:form id="form"> 
             <ui:repeat value="#{progressCocoaController.progressList}" var="progress"> 
-                <p:panel header="#{progress.statusId.statusName} #{progress.percentageComplete}%" footer="#{progress.userCreated.username} #{progress.dateCreated}">   
-                    <h:outputText value="#{progress.progressComment}" escape="false" />  
-                </p:panel>  
+                <p:panel header="#{progress.statusId.statusName} - #{progress.percentageComplete}%">   
+                    <h:outputText value="#{progress.progressComment}" escape="false" /> 
+                    
+                    <f:facet name="footer" >
+                        <div style="text-align: right;">
+                            Créé le 
+                            <h:outputText value="#{progress.dateCreated}" >
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                            </h:outputText>
+                            à 
+                            <h:outputText value="#{progress.dateCreated}" >
+                                <f:convertDateTime type="time" pattern="HH:mm:ss"/>
+                            </h:outputText>
+                            par #{progress.userCreated.fullNameUsername}
+                        </div>
+                    </f:facet>
+                </p:panel>
+                <br />
             </ui:repeat>
         </h:form>
     </h:body>

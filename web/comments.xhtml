@@ -16,8 +16,8 @@
 
                 <h:form id="form"> 
                     <p:growl id="messages" showDetail="true" />  
-                    
-                     <p:panelGrid id="commentHeaderPanelGrid" styleClass="projetaDetails">
+
+                    <p:panelGrid id="commentHeaderPanelGrid" styleClass="projetaDetails">
 
                         <f:facet name="header">
                             <p:row>  
@@ -26,17 +26,30 @@
                                 </p:column>  
                             </p:row>
                         </f:facet> 
-                     </p:panelGrid>
+                    </p:panelGrid>
                     <br />
-                    
+
 
                     <ui:repeat value="#{commentController.commentList}" var="comment"> 
-                        <p:panel header="#{comment.userCreated.username}" footer="#{comment.dateCreated}">  
-                            <h:outputText value="#{comment.comment}" escape="false" />  
-                        </p:panel>  
+                        <p:panel header="#{comment.userCreated.fullNameUsername}" >  
+                            <h:outputText value="#{comment.comment}" escape="false" />
+
+                            <f:facet name="footer" >
+                                <div style="text-align: right;">
+                                    Créé le 
+                                    <h:outputText value="#{comment.dateCreated}" >
+                                        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                    </h:outputText>
+                                    à 
+                                    <h:outputText value="#{comment.dateCreated}" >
+                                        <f:convertDateTime type="time" pattern="HH:mm:ss"/>
+                                    </h:outputText>
+                                </div>
+                            </f:facet>
+                        </p:panel>
                         <br />
                     </ui:repeat>
-                     
+
 
                     <p:messages id="sendCommentMessages" showDetail="true" autoUpdate="true"/>  
 
@@ -50,7 +63,7 @@
                                 </p:column>  
                             </p:row>
                         </f:facet> 
-                        
+
                         <p:row>
                             <p:column style="vertical-align: top; white-space: nowrap;"><h:outputLabel for="inputareaComment" value="Nouveau commentaire : *" style="vertical-align: top; white-space: nowrap;" /></p:column>
                             <p:column>
@@ -60,7 +73,7 @@
                                 </p:inputTextarea>
                             </p:column>
                         </p:row>
-                        
+
                         <f:facet name="footer">
                             <p:row>  
                                 <p:column style="border: none;">
