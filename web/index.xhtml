@@ -20,8 +20,71 @@
                 <p></p>
 <!--                <h:outputText value="logged in" rendered="#{authBackingBean.loggedIn}" />-->
 
-                
 
+                <br/>
+
+                <h:form id="indexForm"> 
+                    
+                    Cliquez sur <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="login.xhtml?faces-redirect=true" /> pour pouvoir accéder à vos projets. <br/>
+                    Si vous n'avez pas encore de compte, cliquez ici : <p:commandLink id="registerLink" value="S'inscrire" global="false" rendered="#{! authBackingBean.loggedIn}" action="register.xhtml?faces-redirect=true" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    <p:treeTable value="#{publicProjectController.root}" var="projectSimple"  
+                                 selection="#{publicProjectController.selectedNode}" selectionMode="single">  
+
+                        <f:facet name="header">  
+                            Projets publics
+                        </f:facet>  
+
+                        <p:column style="width:150px">  
+                            <f:facet name="header">  
+                                Nom  
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.name}" />
+                        </p:column>  
+
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                Date début  
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.size}" />
+                        </p:column>  
+
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                Date fin 
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.type}" />
+                        </p:column>  
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                État 
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.status}" />
+                        </p:column>  
+
+                        <f:facet name="footer">  
+                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{projectDetailController.showProjectDetails()}" >
+                                <f:setPropertyActionListener target="#{projectDetailController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+                            <p:commandButton value="Bogues" icon="ui-icon-search" action="#{bugController.showBugs()}" >
+                                <f:setPropertyActionListener target="#{bugController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+                            <p:commandButton value="Rapporter un bogue" icon="ui-icon-document" action="#{reportBugController.showBugReportForm()}" >
+                                <f:setPropertyActionListener target="#{reportBugController.project}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+                            <p:commandButton value="Tâches" icon="ui-icon-search" action="#{taskController.showTasks()}" >
+                                <f:setPropertyActionListener target="#{taskController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+                            <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showProjectComments()}" >
+                                <f:setPropertyActionListener target="#{commentController.project}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+
+                        </f:facet>  
+                    </p:treeTable>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

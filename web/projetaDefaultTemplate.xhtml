@@ -17,7 +17,7 @@
 
 
         <div id="top" class="top">
-            <ui:insert name="top"><img src="./resources/img/Projeta_logo_small.png" /></ui:insert>
+            <ui:insert name="top"><a href="index.xhtml" ><img src="./resources/img/Projeta_logo_small.png" /></a></ui:insert>
             <div style="float:right;">
                 <h:form id="loginForm">
                     <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="login.xhtml?faces-redirect=true" />&nbsp;&nbsp;&nbsp;&nbsp;
