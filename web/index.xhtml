@@ -25,11 +25,12 @@
 
                 <h:form id="indexForm"> 
                     
-                    Cliquez sur <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="login.xhtml?faces-redirect=true" /> pour pouvoir accéder à vos projets. <br/>
-                    Si vous n'avez pas encore de compte, cliquez ici : <p:commandLink id="registerLink" value="S'inscrire" global="false" rendered="#{! authBackingBean.loggedIn}" action="register.xhtml?faces-redirect=true" />
-                    <br/>
-                    <br/>
-                    <br/>
+                    <h:outputText value="Cliquez sur " rendered="#{! authBackingBean.loggedIn}" />
+                    <p:commandLink id="loginLink" value="Connexion" global="false" rendered="#{! authBackingBean.loggedIn}" action="login.xhtml?faces-redirect=true" />
+                    <h:outputText value=" pour pouvoir accéder à vos projets.&lt;br /&gt;" escape="false" rendered="#{! authBackingBean.loggedIn}" />
+                    <h:outputText value="Si vous n'avez pas encore de compte, cliquez ici : " rendered="#{! authBackingBean.loggedIn}" />
+                    <p:commandLink id="registerLink" value="S'inscrire" global="false" rendered="#{! authBackingBean.loggedIn}" action="register.xhtml?faces-redirect=true" />
+                    <h:outputText value="&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;" escape="false" rendered="#{! authBackingBean.loggedIn}" />
                     
                     <p:treeTable value="#{publicProjectController.root}" var="projectSimple"  
                                  selection="#{publicProjectController.selectedNode}" selectionMode="single">  
