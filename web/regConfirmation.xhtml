@@ -11,52 +11,59 @@
     <h:body>
         <ui:composition template="./projetaDefaultTemplate.xhtml">
 
-            <!--            <ui:define name="top">
-                            top
-                        </ui:define>-->
-
-            <!--            <ui:define name="left">
-                            menu
-                        </ui:define>-->
-
-
             <ui:define name="content">
 
                 <p>Votre compte a été créé.</p> 
-                
+
                 <p>Vous pouvez-vous connecter maintenant.</p>
-                
+
                 <h:form id="loginSiteForm" rendered="#{! authBackingBean.loggedIn}">  
 
-                    <p:messages globalOnly="true" autoUpdate="true" />
+                    <div align="center">
+                        <p:messages globalOnly="true" autoUpdate="true" />
 
-                    <p:panelGrid columns="2">  
-                        <f:facet name="header">  
-                            Login 
-                        </f:facet>  
-                        <h:outputLabel for="username" value="Username:" />  
-                        <p:inputText value="#{authBackingBean.username}"   
-                                     id="username" label="username" />  
+                        <p:panelGrid>  
+                            <f:facet name="header">  
+                                <p:row>  
+                                    <p:column colspan="2"> 
+                                        Login 
+                                    </p:column>
+                                </p:row>
+                            </f:facet>  
+                            <p:row>  
+                                <p:column> 
+                                    <h:outputLabel for="username" value="Nom d'utilisateur :" />  
+                                </p:column>
+                                <p:column> 
+                                    <p:inputText value="#{authBackingBean.username}"   
+                                                 id="username" label="username" /> 
+                                </p:column>
+                            </p:row>
 
-                        <h:outputLabel for="password" value="Password:" />  
-                        <p:password value="#{authBackingBean.password}"   
-                                    id="password" label="password" feedback="false" />  
+                            <p:row>  
+                                <p:column> 
+                                    <h:outputLabel for="password" value="Mot de passe :" /> 
+                                </p:column>
+                                <p:column> 
+                                    <p:password value="#{authBackingBean.password}"   
+                                                id="password" label="password" feedback="false" />  
+                                </p:column>
+                            </p:row>
 
-                        <f:facet name="footer">  
-                            <p:commandButton id="loginButton" value="Se connecter"    
-                                             action="#{authBackingBean.login}"   
-                                             />  
-                        </f:facet>  
-                    </p:panelGrid>  
-
+                            <f:facet name="footer">
+                                <p:row>  
+                                    <p:column colspan="2" style="text-align: right;"> 
+                                        <p:commandButton id="loginButton" value="Se connecter"    
+                                                         action="#{authBackingBean.login}"   
+                                                         />  
+                                    </p:column>
+                                </p:row>
+                            </f:facet>  
+                        </p:panelGrid>   
+                    </div>
                 </h:form> 
-                
+
             </ui:define>
-
-
-            <!--            <ui:define name="bottom">
-                            bottom
-                        </ui:define>-->
 
         </ui:composition>
     </h:body>

@@ -16,7 +16,6 @@
 
 #left {
     float: left;
-/*    background-color: #ece3a5;*/
     background-color: #ffffff;
     padding: 5px;
     width: 160px;
@@ -36,14 +35,12 @@
 }
 
 .left_content {
-/*    background-color: #dddddd;*/
     background-color: #ffffff;
     padding: 5px;
     margin-left: 170px;
 }
 
 .right_content {
-/*    background-color: #dddddd;*/
     background-color: #ffffff;
     padding: 5px;
     margin: 0px 170px 0px 170px;
@@ -66,16 +63,12 @@
 }
 
 .projetaTable {
-/*    background-color:#FFFFFF;*/
-/*    border: solid #000 3px;*/
     width: 100%;
     border: solid 1px #A8A8A8;
  }
 
 .projetaTable td {
      border: none #A8A8A8;
-/*     display: table-cell;*/
-/*     float: none;*/
  }
  
 .projetaTable tr {
@@ -84,20 +77,16 @@
  
  
 .projetaDetails {
-/*    background-color:#FFFFFF;*/
-/*    border: solid #000 3px;*/
     width: 100%;
     border: solid 1px #A8A8A8;
  }
 
 .projetaDetails td {
-/*     border: solid #A8A8A8;*/
-/*     display: table-cell;*/
-/*     float: none;*/
+
  }
  
 .projetaDetails tr {
-/*     border: solid #A8A8A8;*/
+
  }
  
  
