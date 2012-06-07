@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./projetaDefaultTemplate.xhtml">
+
+
+            <ui:define name="content">
+
+                <h:form id="form"> 
+
+                    <p:growl id="messages" showDetail="true" />  
+
+                    <p:treeTable value="#{publicProjectController.root}" var="projectSimple"  
+                                 selection="#{publicProjectController.selectedNode}" selectionMode="single">  
+
+                        <f:facet name="header">  
+                            Projets 
+                        </f:facet>  
+
+                        <p:column style="width:250px">  
+                            <f:facet name="header">  
+                                Nom  
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.name}" />
+                        </p:column>  
+
+                        <p:column style="width:30px; text-align: center;">  
+                            <f:facet name="header">  
+                                Date début  
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.size}" />
+                        </p:column>  
+
+                        <p:column style="width:30px; text-align: center;">  
+                            <f:facet name="header">  
+                                Date fin 
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.type}" />
+                        </p:column>  
+                        <p:column style="width:100px">  
+                            <f:facet name="header">  
+                                État 
+                            </f:facet>  
+                            <h:outputText value="#{projectSimple.status}" />
+                        </p:column>
+
+                        <f:facet name="footer">  
+                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{projectDetailController.showProjectDetails()}" >
+                                <f:setPropertyActionListener target="#{projectDetailController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+                            <p:commandButton value="Bogues" icon="ui-icon-search" action="#{bugController.showBugs()}" >
+                                <f:setPropertyActionListener target="#{bugController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+                            <p:commandButton value="Rapporter un bogue" icon="ui-icon-document" action="#{reportBugController.showBugReportForm()}" >
+                                <f:setPropertyActionListener target="#{reportBugController.project}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+                            <p:commandButton value="Tâches" icon="ui-icon-search" action="#{taskController.showTasks()}" >
+                                <f:setPropertyActionListener target="#{taskController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+                            <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showProjectComments()}" >
+                                <f:setPropertyActionListener target="#{commentController.project}" value="#{publicProjectController.selectedNode.data}" />
+                            </p:commandButton>
+
+                        </f:facet>  
+                    </p:treeTable>  
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
