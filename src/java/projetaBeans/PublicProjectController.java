@@ -49,17 +49,6 @@ public class PublicProjectController implements Serializable {
 
 
         ProjectDummy projDummy = wph.findPublicProjectsPOJO(ProjectDummy.class);
-        //List<Project> listProj = wph.findProjectsPOJO(List.class);
-
-        // works !
-        /*
-         * for (Project p : projDummy.getListProject()) {
-         *
-         * if (p.getProjectTitle() != null) { TreeNode test = new
-         * DefaultTreeNode(new Document(p.getProjectTitle(), "-", "-", "En
-         * cours"), root); }
-        }
-         */
 
         for (ProjectSimpleWebSite p : projDummy.getListProject()) {
 

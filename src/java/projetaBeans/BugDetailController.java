@@ -40,16 +40,12 @@ public class BugDetailController {
     
     
     public String showBugId(int id) {
-        //this.projectId = Integer.parseInt(id);
-        //this.projectId = Integer.parseInt(strProjectId);
         this.setBugId((Integer) id);
         
         return "bugDetail.xhtml";
     }
     
     public String showBugDetails() {
-        
-        //this.projectId = Integer.parseInt(getStrProjectId());
         
         this.setBugId((Integer) projectSimple.getId());
         

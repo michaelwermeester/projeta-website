@@ -94,13 +94,6 @@ public class AuthBackingBean {
         try {
             request.login(username, password);
             
-//            if (request.isUserInRole("administrator") || request.isUserInRole("developer") || request.isUserInRole("user")) {
-//                // login OK.
-//                return "index.xhtml?faces-redirect=true";
-//            }
-//            
-//            throw new Exception();
-            
             return "index.xhtml?faces-redirect=true";
             
             
@@ -109,8 +102,6 @@ public class AuthBackingBean {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login incorrect", "Login incorrect");
 
             FacesContext.getCurrentInstance().addMessage(null, msg);
-            
-            //return "login.xhtml";
 
             
             // refresh current page.

@@ -35,16 +35,13 @@ public class TaskDetailController {
     }
 
     public String showTaskId(int id) {
-        //this.projectId = Integer.parseInt(id);
-        //this.projectId = Integer.parseInt(strProjectId);
+        
         this.setTaskId((Integer) id);
 
         return "taskDetail.xhtml";
     }
 
     public String showTaskDetails() {
-
-        //this.projectId = Integer.parseInt(getStrProjectId());
 
         this.setTaskId((Integer) projectSimple.getId());
 

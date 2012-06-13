@@ -10,15 +10,6 @@
 
         <ui:composition template="./projetaDefaultTemplate.xhtml">
 
-<!--            <ui:define name="top">
-                top
-            </ui:define>-->
-
-<!--            <ui:define name="left">
-                menu
-            </ui:define>-->
-
-
             <ui:define name="content">
                 
                 <h:form id="form"> 
@@ -76,17 +67,10 @@
                                 <f:setPropertyActionListener target="#{commentController.project}" value="#{projectController.selectedNode.data}" />
                             </p:commandButton>
                             
-                            <!--                            <p:commandButton value="View" icon="ui-icon-search"  -->
-                            <!--                                             update=":form:documentPanel" oncomplete="documentDialog.show()"/>  -->
                         </f:facet>  
                     </p:treeTable>  
                 </h:form>
             </ui:define>
-
-
-<!--            <ui:define name="bottom">
-                bottom
-            </ui:define>-->
 
         </ui:composition>
 

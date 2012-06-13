@@ -10,20 +10,8 @@
 
         <ui:composition template="./projetaDefaultTemplate.xhtml">
 
-            <!--            <ui:define name="top">
-                            top
-                        </ui:define>
-            
-                        <ui:define name="left">
-                            left
-                        </ui:define>-->
-
             <ui:define name="content">
                 <h:form id="completeform">
-
-                    <!--                    <p:messages showDetail="true" autoUpdate="true" id="messages" />
-                                        <h:messages errorClass="error"/> -->
-
 
                     <p>
                         Pas d'inscription possible pour le moment. <br /><br />Veuillez réessayer plus tard.
@@ -121,12 +109,6 @@
                                 <p:inputText id="phoneNumber" value="#{registrationBean.phoneNumber}" label="Telephone" />
                             </p:column>
                         </p:row>
-                        <!--                        <p:row>  
-                                                    <p:column colspan="2">
-                                                        <p:message id="captchaMessage" for="captcha" />
-                                                    </p:column>  
-                                                </p:row>-->
-                        <!--                    </p:panelGrid> -->
 
                         <p:row>
                             <p:column colspan="3" style="width: 100%"><h:outputText value="* champs obligatoires" /></p:column>        
@@ -143,19 +125,7 @@
                                 </f:view>
                             </p:column>
                         </p:row>
-                        <!--                    <p:message id="captchaMessage" for="captcha" />-->
-
-                        <!--                    <p:panelGrid styleClass="grid" style="width: 100%">-->
-                        <!--                        <p:row>
-                                                    <p:column>
-                                                        <p:message id="createUserMessage" for="Register" />
-                        <h:messages id="messages" errorClass="errorMessage" infoClass="infoMessage"
-                                                warnClass="warnMessage" globalOnly="true"></h:messages>
-                                                    </p:column>
-                                                </p:row>-->
-
-
-
+       
                         <f:facet name="footer">
                             <p:row>
                                 <p:column>

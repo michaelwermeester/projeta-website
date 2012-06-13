@@ -23,7 +23,6 @@ public class ProjectDetailController {
     /**
      * Creates a new instance of ProjectDetailController
      */
-    //@ManagedProperty("#{param.strProjectId}")
     private String strProjectId;
     private Integer projectId;
     private ProjectSimple projectSimple;
@@ -34,16 +33,12 @@ public class ProjectDetailController {
     }
 
     public String showProjectId(int id) {
-        //this.projectId = Integer.parseInt(id);
-        //this.projectId = Integer.parseInt(strProjectId);
         this.projectId = id;
 
         return "projectDetail.xhtml";
     }
 
     public String showProjectDetails() {
-
-        //this.projectId = Integer.parseInt(getStrProjectId());
 
         this.projectId = projectSimple.getId();
 

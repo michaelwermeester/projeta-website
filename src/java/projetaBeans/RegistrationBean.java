@@ -38,10 +38,6 @@ import pojeta.Common;
 //@ViewScoped
 public class RegistrationBean {
 
-//    private String password;
-//    private String username;
-//    private String firstname;
-//    private String lastname;
     private User user = new User();
 
     /**
@@ -140,22 +136,10 @@ public class RegistrationBean {
                 }
 
             } catch (Exception ex) {
-                
-//                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ex.getMessage());
-//                FacesContext.getCurrentInstance().addMessage(null, msg);
-                
+
                 return "register.xhtml";
             }
         }
-
-
-
-        //return "regConfirmation.xhtml?faces-redirect=true";
-//        }
-//        else {
-//            return "register.xhtml?faces-redirect=true";
-
-//        }
     }
 
     public void checkUserIfAvailable(FacesContext context, UIComponent component,
@@ -192,9 +176,4 @@ public class RegistrationBean {
         }
 
     }
-//    public void submit(ActionEvent event) {
-//        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Correct", "Correct");
-//
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
-//    }
 }

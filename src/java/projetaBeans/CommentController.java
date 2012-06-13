@@ -45,18 +45,6 @@ public class CommentController {
      */
     public List<Comment> getCommentList() {
 
-
-        /*
-         * wch = new WSCommentHelper();
-         * wch.setUsernamePassword(Common.getWSUsername(),
-         * Common.getWSPassword());
-         *
-         * CommentDummy tmpCommentDummy =
-         * wch.findCommentsByTaskIdWebsite(CommentDummy.class, "2");
-         *
-         * this.commentList = tmpCommentDummy.getListComment();
-         */
-
         return commentList;
     }
 
@@ -97,9 +85,6 @@ public class CommentController {
 
     public String showProjectComments() {
 
-        //this.projectId = Integer.parseInt(getStrProjectId());
-
-        //this.projectId = projectSimple.getId();
         try {
             commentHelper = new WSCommentHelper();
             commentHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
@@ -120,9 +105,6 @@ public class CommentController {
 
     public String showTaskComments() {
 
-        //this.projectId = Integer.parseInt(getStrProjectId());
-
-        //this.projectId = projectSimple.getId();
         try {
             commentHelper = new WSCommentHelper();
             commentHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
@@ -155,8 +137,6 @@ public class CommentController {
         commentHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
 
         commentHelper.createNewComment(Comment.class, getCommentObject());
-
-        //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Sample warn message", "Watch out for PrimeFaces!"));
 
         // refresh.
         this.showTaskComments();

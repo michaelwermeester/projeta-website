@@ -56,8 +56,6 @@ public class BugController implements Serializable {
 
                 if (b.getBugTitle() != null) {
                     DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(b.getBugId(), b.getBugId().toString(), b.getBugTitle(), b.getBugType(), "En cours"), root);
-
-                    //treeAddChildProjects(treeNode, p);
                 }
             }
 
