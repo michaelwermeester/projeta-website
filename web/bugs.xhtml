@@ -63,7 +63,7 @@
                                     <f:setPropertyActionListener target="#{reportBugController.project}" value="#{bugController.projectSimple}" />
                                 </p:commandButton>
                                 <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
-                                    <f:setPropertyActionListener target="#{commentController.project}" value="#{taskController.selectedNode.data}" />
+                                    <f:setPropertyActionListener target="#{commentController.project}" value="#{myBugsController.selectedNode.data}" />
                                 </p:commandButton>
 
                              </p:column>

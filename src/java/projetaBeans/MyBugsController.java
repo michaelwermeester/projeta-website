@@ -6,18 +6,14 @@ package projetaBeans;
 
 import be.luckycode.projetawebservice.BugDummy;
 import be.luckycode.projetawebservice.BugSimpleWebSite;
-import be.luckycode.projetawebservice.ProjectDummy;
-import be.luckycode.projetawebservice.ProjectSimpleWebSite;
-import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import pojeta.Common;
 import pojeta.ProjectSimple;
 import pojeta.WSBugHelper;
-import pojeta.WSTaskHelper;
 
 /**
  *
@@ -25,7 +21,7 @@ import pojeta.WSTaskHelper;
  */
 @ManagedBean
 @RequestScoped
-public class BugController implements Serializable {
+public class MyBugsController {
 
     private Integer projectId;
     private ProjectSimple projectSimple;
@@ -33,25 +29,45 @@ public class BugController implements Serializable {
     private TreeNode root;
     private TreeNode selectedNode;
     private TreeNode[] selectedNodes;
-    
+
     /**
      * Creates a new instance of BugController
      */
-    public BugController() {
+    public MyBugsController() {
+        //this.projectId = projectSimple.getId();
+
+        bugHelper = new WSBugHelper();
+        FacesContext context = FacesContext.getCurrentInstance();
+        AuthBackingBean authBean = (AuthBackingBean) context.getApplication().evaluateExpressionGet(context, "#{authBackingBean}", AuthBackingBean.class);
+        bugHelper.setUsernamePassword(authBean.getUsername(), authBean.getPassword());
+
+        root = new DefaultTreeNode("root", null);
+
+
+        BugDummy bugDummy = bugHelper.findBugsReportedPOJO(BugDummy.class);
+
+        for (BugSimpleWebSite b : bugDummy.getListBug()) {
+
+            if (b.getBugTitle() != null) {
+                DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(b.getBugId(), b.getBugId().toString(), b.getBugTitle(), b.getBugType(), "En cours"), root);
+            }
+        }
     }
-    
+
     public String showBugs() {
 
         try {
             this.projectId = projectSimple.getId();
 
             bugHelper = new WSBugHelper();
-            bugHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+            FacesContext context = FacesContext.getCurrentInstance();
+            AuthBackingBean authBean = (AuthBackingBean) context.getApplication().evaluateExpressionGet(context, "#{authBackingBean}", AuthBackingBean.class);
+            bugHelper.setUsernamePassword(authBean.getUsername(), authBean.getPassword());
 
             root = new DefaultTreeNode("root", null);
 
 
-            BugDummy bugDummy = bugHelper.findBugsByProjectIdPOJO(BugDummy.class, this.projectId.toString());
+            BugDummy bugDummy = bugHelper.findBugsReportedPOJO(BugDummy.class);
 
             for (BugSimpleWebSite b : bugDummy.getListBug()) {
 
@@ -60,7 +76,7 @@ public class BugController implements Serializable {
                 }
             }
 
-            return "bugs.xhtml?faces-redirect=true";
+            return "myBugs.xhtml?faces-redirect=true";
         } catch (Exception e) {
             // No bugs...
             return "";

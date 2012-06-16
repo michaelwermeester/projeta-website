@@ -34,6 +34,10 @@ public class WSBugHelper {
         webResource = client.resource(BASE_URI).path("bugs");
     }
 
+    public void updateBug(Object requestEntity) throws UniformInterfaceException {
+        webResource.path("update").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(requestEntity);
+    }
+
     public <T> T createNewBug(Class<T> responseType, Object requestEntity) throws UniformInterfaceException {
         return webResource.path("create").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(responseType, requestEntity);
     }
@@ -54,13 +58,15 @@ public class WSBugHelper {
         return resource.get(responseType);
     }
 
-    public <T> T findAll(Class<T> responseType) throws UniformInterfaceException {
+    public <T> T findBugsReportedPOJO(Class<T> responseType) throws UniformInterfaceException {
         WebResource resource = webResource;
-        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+        resource = resource.path("wsbugsreported");
+        return resource.get(responseType);
     }
 
-    public void edit(Object requestEntity) throws UniformInterfaceException {
-        webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(requestEntity);
+    public String findAllBugs() throws UniformInterfaceException {
+        WebResource resource = webResource;
+        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
     public <T> T findRange_XML(Class<T> responseType, String from, String to) throws UniformInterfaceException {
