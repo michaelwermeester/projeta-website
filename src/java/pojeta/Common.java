@@ -7,14 +7,18 @@ package pojeta;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author michael
  */
-public class Common {
 
+public class Common {
+    
     // retourne le nom d'utilisateur utilisé pour l'athentification
     // au web-service (se trouve dans web.xml)
     public static String getWSUsername() {

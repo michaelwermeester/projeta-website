@@ -16,8 +16,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
@@ -31,7 +33,7 @@ import pojeta.WSProjectHelper;
  * @author michael
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ProjectController implements Serializable {
 
     private TreeNode root;
@@ -42,13 +44,19 @@ public class ProjectController implements Serializable {
     public ProjectController() {
 
         wph = new WSProjectHelper();
-        wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
-
-
+        //wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        AuthBackingBean authBean = (AuthBackingBean) context.getApplication().evaluateExpressionGet(context, "#{authBackingBean}", AuthBackingBean.class);
+        //String username = authBean.getUsername();
+        //String password = authBean.getPassword();
+        wph.setUsernamePassword(authBean.getUsername(), authBean.getPassword());
+        
         root = new DefaultTreeNode("root", null);
 
 
         ProjectDummy projDummy = wph.findProjectsPOJO(ProjectDummy.class);
+        //ProjectDummy projDummy = wph.findProjectsPOJOUser(loggedInUserName);
 
         for (ProjectSimpleWebSite p : projDummy.getListProject()) {
 
@@ -56,10 +64,12 @@ public class ProjectController implements Serializable {
 
 
                 DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), Common.dateToString(p.getStartDate()), Common.dateToString(p.getEndDate()), p.getProjectStatus()), root);
+                //DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), username, Common.dateToString(p.getStartDate()), Common.dateToString(p.getEndDate()), password), root);
 
                 treeAddChildProjects(treeNode, p);
             }
         }
+        
     }
 
     public TreeNode getRoot() {

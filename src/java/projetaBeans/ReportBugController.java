@@ -9,7 +9,9 @@ import be.luckycode.projetawebservice.Bugcategory;
 import be.luckycode.projetawebservice.Project;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pojeta.Common;
 import pojeta.ProjectSimple;
 import pojeta.WSBugHelper;
@@ -19,7 +21,7 @@ import pojeta.WSBugHelper;
  * @author michael
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ReportBugController implements Serializable {
     
     private ProjectSimple project;
@@ -75,7 +77,12 @@ public class ReportBugController implements Serializable {
     public String sendBugReport() {
         
         bugHelper = new WSBugHelper();
-        bugHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+        //bugHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+        FacesContext context = FacesContext.getCurrentInstance();
+        AuthBackingBean authBean = (AuthBackingBean) context.getApplication().evaluateExpressionGet(context, "#{authBackingBean}", AuthBackingBean.class);
+        //String username = authBean.getUsername();
+        //String password = authBean.getPassword();
+        bugHelper.setUsernamePassword(authBean.getUsername(), authBean.getPassword());
         
         bugHelper.createNewBug(Bug.class, bug);
         

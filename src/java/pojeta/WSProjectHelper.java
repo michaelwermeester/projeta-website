@@ -35,8 +35,22 @@ public class WSProjectHelper {
         webResource = client.resource(BASE_URI).path("projects");
     }
 
+    public void updateUsersVisibleForProject(Object requestEntity) throws UniformInterfaceException {
+        webResource.path("updateUsersVisibleForProject").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(requestEntity);
+    }
+
     public String createNewProject(Object requestEntity) throws UniformInterfaceException {
         return webResource.path("create").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(String.class, requestEntity);
+    }
+
+    public String findAllAssignedProjects() throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path("assigned");
+        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+    }
+
+    public void updateUsergroupsVisibleForProject(Object requestEntity) throws UniformInterfaceException {
+        webResource.path("updateUsergroupsVisibleForProject").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(requestEntity);
     }
 
     public void remove(String id) throws UniformInterfaceException {
@@ -88,6 +102,16 @@ public class WSProjectHelper {
         WebResource resource = webResource;
         resource = resource.path("wsprojects");
         return resource.get(responseType);
+    }
+
+    public String findAllProjectsTEST() throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path("testproj");
+        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+    }
+
+    public void updateClientsVisibleForProject(Object requestEntity) throws UniformInterfaceException {
+        webResource.path("updateClientsVisibleForProject").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(requestEntity);
     }
 
     public <T> T find(Class<T> responseType, String id) throws UniformInterfaceException {

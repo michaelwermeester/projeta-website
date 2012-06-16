@@ -8,10 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.ViewHandler;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +18,16 @@ import javax.servlet.http.HttpServletRequest;
  * @author michael
  */
 @ManagedBean
-@RequestScoped
+//@RequestScoped
+@SessionScoped
+
 public class AuthBackingBean {
 
     // nom d'utilisateur.
+    @ManagedProperty(value="#{username}") 
     private String username; 
     // mot de passe.
+    @ManagedProperty(value="#{password}") 
     private String password;
     
     // Constructeur.
@@ -93,6 +94,8 @@ public class AuthBackingBean {
         
         try {
             request.login(username, password);
+            
+            //session.setAttribute("entry", entry);
             
             return "index.xhtml?faces-redirect=true";
             
