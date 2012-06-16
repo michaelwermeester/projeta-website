@@ -70,6 +70,12 @@ public class WSTaskHelper {
         return webResource.path("create").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(String.class, requestEntity);
     }
 
+    public <T> T findMyProjectTasksPOJO(Class<T> responseType) throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path("wsprojecttasks");
+        return resource.get(responseType);
+    }
+
     public void create_XML(Object requestEntity) throws UniformInterfaceException {
         webResource.type(javax.ws.rs.core.MediaType.APPLICATION_XML).post(requestEntity);
     }
@@ -90,11 +96,6 @@ public class WSTaskHelper {
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public String findAll4() throws UniformInterfaceException {
-        WebResource resource = webResource;
-        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
-    }
-
     public <T> T find(Class<T> responseType, String id) throws UniformInterfaceException {
         WebResource resource = webResource;
         resource = resource.path(java.text.MessageFormat.format("{0}", new Object[]{id}));
@@ -104,6 +105,11 @@ public class WSTaskHelper {
     public String findPersonalTasks() throws UniformInterfaceException {
         WebResource resource = webResource;
         resource = resource.path("personal");
+        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+    }
+
+    public String findAllTasks() throws UniformInterfaceException {
+        WebResource resource = webResource;
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 

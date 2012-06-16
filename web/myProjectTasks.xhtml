@@ -14,31 +14,31 @@
             <ui:define name="content">
 
                 <h:form id="form"> 
-
+                    
                     <p:growl id="messages" showDetail="true" />  
-
-                    <p:treeTable value="#{publicProjectController.root}" var="projectSimple"  
-                                 selection="#{publicProjectController.selectedNode}" selectionMode="single">  
+                    
+                    <p:treeTable value="#{myProjectTasksController.root}" var="projectSimple"  
+                                 selection="#{myProjectTasksController.selectedNode}" selectionMode="single">  
 
                         <f:facet name="header">  
-                            Projets 
+                            Tâches 
                         </f:facet>  
 
-                        <p:column style="width:250px">  
+                        <p:column style="width:150px">  
                             <f:facet name="header">  
                                 Nom  
                             </f:facet>  
                             <h:outputText value="#{projectSimple.name}" />
                         </p:column>  
 
-                        <p:column style="width:30px; text-align: center;">  
+                        <p:column style="width:100px">  
                             <f:facet name="header">  
                                 Date début  
                             </f:facet>  
                             <h:outputText value="#{projectSimple.size}" />
                         </p:column>  
 
-                        <p:column style="width:30px; text-align: center;">  
+                        <p:column style="width:100px">  
                             <f:facet name="header">  
                                 Date fin 
                             </f:facet>  
@@ -49,27 +49,19 @@
                                 État 
                             </f:facet>  
                             <h:outputText value="#{projectSimple.status}" />
-                        </p:column>
+                        </p:column>  
 
                         <f:facet name="footer">  
-                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{projectDetailController.showProjectDetails()}" >
-                                <f:setPropertyActionListener target="#{projectDetailController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
+                            <p:commandButton value="Retour" icon="ui-icon-arrowreturnthick-1-w" onclick="javascript:history.back()" />
+                            <p:commandButton value="Détails" icon="ui-icon-search" action="#{taskDetailController.showTaskDetails()}" >
+                                <f:setPropertyActionListener target="#{taskDetailController.projectSimple}" value="#{myProjectTasksController.selectedNode.data}" />
                             </p:commandButton>
-                            <p:commandButton value="Bogues" icon="ui-icon-search" action="#{bugController.showBugs()}" >
-                                <f:setPropertyActionListener target="#{bugController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
+                            <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
+                                <f:setPropertyActionListener target="#{commentController.project}" value="#{myProjectTasksController.selectedNode.data}" />
                             </p:commandButton>
-                            <p:commandButton value="Rapporter un bogue" icon="ui-icon-document" action="#{reportBugController.showBugReportForm()}" >
-                                <f:setPropertyActionListener target="#{reportBugController.project}" value="#{publicProjectController.selectedNode.data}" />
-                            </p:commandButton>
-                            <p:commandButton value="Tâches" icon="ui-icon-search" action="#{taskController.showTasks()}" >
-                                <f:setPropertyActionListener target="#{taskController.projectSimple}" value="#{publicProjectController.selectedNode.data}" />
-                            </p:commandButton>
-                            <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showProjectComments()}" >
-                                <f:setPropertyActionListener target="#{commentController.project}" value="#{publicProjectController.selectedNode.data}" />
-                            </p:commandButton>
-
-                        </f:facet>  
-                    </p:treeTable>  
+                       </f:facet>  
+                    </p:treeTable>
+                    
                 </h:form>
             </ui:define>
 
