@@ -58,6 +58,12 @@ public class WSBugHelper {
         return resource.get(responseType);
     }
 
+    public <T> T findMyProjectBugsPOJO(Class<T> responseType) throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path("wsprojectbugs");
+        return resource.get(responseType);
+    }
+
     public <T> T findBugsReportedPOJO(Class<T> responseType) throws UniformInterfaceException {
         WebResource resource = webResource;
         resource = resource.path("wsbugsreported");

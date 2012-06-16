@@ -21,7 +21,7 @@
                                  selection="#{myBugsController.selectedNode}" selectionMode="single">  
 
                         <f:facet name="header"> 
-                            Bogues - #{myBugsController.projectSimple.name} 
+                            Bogues 
                         </f:facet>  
 
                         <p:column style="width:40px">  
@@ -59,9 +59,6 @@
                             <p:column colspan="3" style="text-align: right; border: none;"> 
                                 <p:commandButton value="Détails" icon="ui-icon-search" action="#{bugDetailController.showBugDetails()}" >
                                     <f:setPropertyActionListener target="#{bugDetailController.projectSimple}" value="#{myBugsController.selectedNode.data}" />
-                                </p:commandButton>
-                                <p:commandButton value="Rapporter un bogue" icon="ui-icon-document" action="#{reportBugController.showBugReportForm()}" >
-                                    <f:setPropertyActionListener target="#{reportBugController.project}" value="#{myBugsController.projectSimple}" />
                                 </p:commandButton>
                                 <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
                                     <f:setPropertyActionListener target="#{commentController.project}" value="#{myBugsController.selectedNode.data}" />
