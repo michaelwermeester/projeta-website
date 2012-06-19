@@ -21,7 +21,7 @@ import pojeta.WSBugHelper;
  * @author michael
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ReportBugController implements Serializable {
     
     private ProjectSimple project;
@@ -37,6 +37,7 @@ public class ReportBugController implements Serializable {
         
         this.bug = new Bug();
         this.bug.setBugcategoryId(new Bugcategory());
+
     }
 
     /**
@@ -75,6 +76,9 @@ public class ReportBugController implements Serializable {
     }
     
     public String sendBugReport() {
+        
+        //Project p = new Project(project.getId());
+        //this.bug.setProjectId(p);
         
         bugHelper = new WSBugHelper();
         //bugHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());

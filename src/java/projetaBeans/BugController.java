@@ -24,7 +24,7 @@ import pojeta.WSTaskHelper;
  * @author michael
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class BugController implements Serializable {
 
     private Integer projectId;
