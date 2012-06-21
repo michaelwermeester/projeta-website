@@ -62,6 +62,11 @@ public class ProgressCocoaController {
 
                 this.progressList = tmpProgressDummy.getListProgress();
             }
+            else if (requestType.equals("bug")) {
+                ProgressDummy tmpProgressDummy = progressHelper.findProgressByBugIdWebsite(ProgressDummy.class, this.requestId);
+
+                this.progressList = tmpProgressDummy.getListProgress();
+            }
 
             // line breaks.
             for (Progress p : progressList) {

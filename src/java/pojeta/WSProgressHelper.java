@@ -41,6 +41,12 @@ public class WSProgressHelper {
         return resource.get(responseType);
     }
 
+    public <T> T findProgressByBugIdWebsite(Class<T> responseType, String id) throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path(java.text.MessageFormat.format("wsbug/{0}", new Object[]{id}));
+        return resource.get(responseType);
+    }
+
     public void remove(String id) throws UniformInterfaceException {
         webResource.path(java.text.MessageFormat.format("{0}", new Object[]{id})).delete();
     }
