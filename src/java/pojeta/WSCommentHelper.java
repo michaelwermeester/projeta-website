@@ -76,6 +76,12 @@ public class WSCommentHelper {
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
     }
 
+    public <T> T findCommentsByBugIdWebsite(Class<T> responseType, String id) throws UniformInterfaceException {
+        WebResource resource = webResource;
+        resource = resource.path(java.text.MessageFormat.format("wsbug/{0}", new Object[]{id}));
+        return resource.get(responseType);
+    }
+
     public <T> T createNewComment(Class<T> responseType, Object requestEntity) throws UniformInterfaceException {
         return webResource.path("create").type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(responseType, requestEntity);
     }

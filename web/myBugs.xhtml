@@ -60,7 +60,7 @@
                                 <p:commandButton value="Détails" icon="ui-icon-search" action="#{bugDetailController.showBugDetails()}" >
                                     <f:setPropertyActionListener target="#{bugDetailController.projectSimple}" value="#{myBugsController.selectedNode.data}" />
                                 </p:commandButton>
-                                <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
+                                <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showBugComments()}" >
                                     <f:setPropertyActionListener target="#{commentController.project}" value="#{myBugsController.selectedNode.data}" />
                                 </p:commandButton>
 

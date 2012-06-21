@@ -61,6 +61,11 @@ public class CommentCocoaController {
 
                 this.commentList = tmpCommentDummy.getListComment();
             }
+            else if (requestType.equals("bug")) {
+                CommentDummy tmpCommentDummy = wch.findCommentsByBugIdWebsite(CommentDummy.class, this.requestId);
+
+                this.commentList = tmpCommentDummy.getListComment();
+            }
 
             // line breaks.
             for (Comment c : commentList) {

@@ -122,6 +122,26 @@ public class CommentController {
 
         return "comments.xhtml?faces-redirect=true";
     }
+    
+    public String showBugComments() {
+
+        try {
+            commentHelper = new WSCommentHelper();
+            commentHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+
+            CommentDummy tmpCommentDummy = commentHelper.findCommentsByBugIdWebsite(CommentDummy.class, project.getId().toString());
+
+            this.commentList = tmpCommentDummy.getListComment();
+
+            // line breaks.
+            for (Comment c : commentList) {
+                c.setComment(c.getComment().replace("\n", "<br />"));
+            }
+        } catch (Exception e) {
+        }
+
+        return "comments.xhtml?faces-redirect=true";
+    }
 
     
     public String sendComment() {
@@ -134,7 +154,13 @@ public class CommentController {
 
 
         commentHelper = new WSCommentHelper();
-        commentHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        AuthBackingBean authBean = (AuthBackingBean) context.getApplication().evaluateExpressionGet(context, "#{authBackingBean}", AuthBackingBean.class);
+        //String username = authBean.getUsername();
+        //String password = authBean.getPassword();
+        commentHelper.setUsernamePassword(authBean.getUsername(), authBean.getPassword());
+        //commentHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
 
         commentHelper.createNewComment(Comment.class, getCommentObject());
 

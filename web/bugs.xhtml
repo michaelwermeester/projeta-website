@@ -63,7 +63,7 @@
                                 <p:commandButton value="Rapporter un bogue" icon="ui-icon-document" action="#{reportBugController.showBugReportForm()}" >
                                     <f:setPropertyActionListener target="#{reportBugController.project}" value="#{bugController.projectSimple}" />
                                 </p:commandButton>
-                                <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showTaskComments()}" >
+                                <p:commandButton value="Commentaires" icon="ui-icon-search" action="#{commentController.showBugComments()}" >
                                     <f:setPropertyActionListener target="#{commentController.project}" value="#{myBugsController.selectedNode.data}" />
                                 </p:commandButton>
 

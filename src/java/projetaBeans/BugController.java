@@ -38,6 +38,8 @@ public class BugController implements Serializable {
      * Creates a new instance of BugController
      */
     public BugController() {
+        
+        showBugs();
     }
     
     public String showBugs() {
