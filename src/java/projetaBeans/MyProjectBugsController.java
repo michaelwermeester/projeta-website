@@ -34,7 +34,7 @@ public class MyProjectBugsController {
      */
     public MyProjectBugsController() {
         //this.projectId = projectSimple.getId();
-
+try {
         bugHelper = new WSBugHelper();
         FacesContext context = FacesContext.getCurrentInstance();
         AuthBackingBean authBean = (AuthBackingBean) context.getApplication().evaluateExpressionGet(context, "#{authBackingBean}", AuthBackingBean.class);
@@ -51,6 +51,8 @@ public class MyProjectBugsController {
                 DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(b.getBugId(), b.getBugId().toString(), b.getBugTitle(), b.getBugType(), b.getProjectStatus()), root);
             }
         }
+} catch (Exception e) {}
+        //showBugs();
     }
 
     public String showBugs() {
@@ -66,7 +68,7 @@ public class MyProjectBugsController {
             root = new DefaultTreeNode("root", null);
 
 
-            BugDummy bugDummy = bugHelper.findBugsReportedPOJO(BugDummy.class);
+            BugDummy bugDummy = bugHelper.findMyProjectBugsPOJO(BugDummy.class);
 
             for (BugSimpleWebSite b : bugDummy.getListBug()) {
 
@@ -75,7 +77,7 @@ public class MyProjectBugsController {
                 }
             }
 
-            return "myBugs.xhtml?faces-redirect=true";
+            return "myProjectBugs.xhtml?faces-redirect=true";
         } catch (Exception e) {
             // No bugs...
             return "";

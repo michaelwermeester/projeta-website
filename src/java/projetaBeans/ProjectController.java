@@ -71,6 +71,37 @@ public class ProjectController implements Serializable {
         }
         
     }
+    
+    public String refresh() {
+        wph = new WSProjectHelper();
+        //wph.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        AuthBackingBean authBean = (AuthBackingBean) context.getApplication().evaluateExpressionGet(context, "#{authBackingBean}", AuthBackingBean.class);
+        //String username = authBean.getUsername();
+        //String password = authBean.getPassword();
+        wph.setUsernamePassword(authBean.getUsername(), authBean.getPassword());
+        
+        root = new DefaultTreeNode("root", null);
+
+
+        ProjectDummy projDummy = wph.findProjectsPOJO(ProjectDummy.class);
+        //ProjectDummy projDummy = wph.findProjectsPOJOUser(loggedInUserName);
+
+        for (ProjectSimpleWebSite p : projDummy.getListProject()) {
+
+            if (p.getProjectTitle() != null) {
+
+
+                DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), p.getProjectTitle(), Common.dateToString(p.getStartDate()), Common.dateToString(p.getEndDate()), p.getProjectStatus()), root);
+                //DefaultTreeNode treeNode = new DefaultTreeNode(new ProjectSimple(p.getProjectId(), username, Common.dateToString(p.getStartDate()), Common.dateToString(p.getEndDate()), password), root);
+
+                treeAddChildProjects(treeNode, p);
+            }
+        }
+        
+        return "projects.xhtml?faces-redirect=true";
+    }
 
     public TreeNode getRoot() {
 

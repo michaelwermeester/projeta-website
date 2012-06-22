@@ -39,7 +39,7 @@ public class BugController implements Serializable {
      */
     public BugController() {
         
-        showBugs();
+        //showBugs();
     }
     
     public String showBugs() {

@@ -4,9 +4,7 @@
  */
 package projetaBeans;
 
-import be.luckycode.projetawebservice.Comment;
-import be.luckycode.projetawebservice.CommentDummy;
-import be.luckycode.projetawebservice.Task;
+import be.luckycode.projetawebservice.*;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -38,6 +36,9 @@ public class CommentController {
     private ProjectSimple project;
 
     public CommentController() {
+        
+        if (commentType == 'p')
+            showProjectComments();
     }
 
     /**
@@ -85,6 +86,8 @@ public class CommentController {
 
     public String showProjectComments() {
 
+        commentType = 'p';
+        
         try {
             commentHelper = new WSCommentHelper();
             commentHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
@@ -104,6 +107,8 @@ public class CommentController {
     }
 
     public String showTaskComments() {
+        
+        commentType = 't';
 
         try {
             commentHelper = new WSCommentHelper();
@@ -124,6 +129,8 @@ public class CommentController {
     }
     
     public String showBugComments() {
+        
+        commentType = 'b';
 
         try {
             commentHelper = new WSCommentHelper();
@@ -150,8 +157,12 @@ public class CommentController {
         this.getCommentObject().setComment(this.getComment());
 
         // lier le commentaire à la tâche.
-        this.commentObject.setTaskId(new Task(project.getId()));
-
+        if (commentType == 't')
+            this.commentObject.setTaskId(new Task(project.getId()));
+        if (commentType == 'p')
+            this.commentObject.setProjectId(new Project(project.getId()));
+        if (commentType == 'b')
+            this.commentObject.setBugId(new Bug(project.getId()));
 
         commentHelper = new WSCommentHelper();
         
@@ -165,7 +176,13 @@ public class CommentController {
         commentHelper.createNewComment(Comment.class, getCommentObject());
 
         // refresh.
-        this.showTaskComments();
+        if (commentType == 't')
+            this.showTaskComments();
+        if (commentType == 'p')
+            this.showProjectComments();
+        if (commentType == 'b')
+            this.showBugComments();
+        
         this.comment = "";
 
         return "comments.xhtml?faces-redirect=true";

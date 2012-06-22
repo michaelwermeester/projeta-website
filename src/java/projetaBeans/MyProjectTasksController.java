@@ -34,7 +34,7 @@ public class MyProjectTasksController {
      */
     public MyProjectTasksController() {
 
-        taskHelper = new WSTaskHelper();
+        /*taskHelper = new WSTaskHelper();
         taskHelper.setUsernamePassword(Common.getWSUsername(), Common.getWSPassword());
 
         root = new DefaultTreeNode("root", null);
@@ -49,7 +49,7 @@ public class MyProjectTasksController {
 
                 treeAddChildProjects(treeNode, p);
             }
-        }
+        }*/
     }
 
     public String showTasks() {
